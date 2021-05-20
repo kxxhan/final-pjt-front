@@ -14,8 +14,8 @@
       <input type="password" id="password" v-model="credentials.password">
     </div>
     <div>
-      <label for="passwordConfirmation">비밀번호 확인: </label>
-      <input type="password" id="passwordConfirmation" v-model="credentials.passwordConfirmation"> 
+      <label for="passwordConfirm">비밀번호 확인: </label>
+      <input type="password" id="passwordConfirm" v-model="credentials.passwordConfirm"> 
     </div>
     <button @click="signup">회원가입</button>
   </div>
@@ -29,19 +29,13 @@ const SERVER_URL = process.env.VUE_APP_SERVER_URL
 
 export default {
   name: 'Signup',
-  // props: {
-  //   isLogin: {
-  //     type: Boolean,
-  //     required: true
-  //   }
-  // },
   data: function () {
     return {
       credentials: {
         email: '',
         username: '',
         password: '',
-        passwordConfirmation: '',
+        passwordConfirm: '',
       }
     }
   },
