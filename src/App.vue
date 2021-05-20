@@ -1,14 +1,48 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/signup">Signup</router-link>
+      <span v-if="loginStatus">
+        <router-link to="/">Home</router-link> |
+        <router-link to="/about">About</router-link> |
+        <router-link to="#" @click.native="onLogout">Logout</router-link>
+      </span>
+      <span v-if="!loginStatus">
+        <router-link to="/login">Login</router-link> |
+        <router-link to="/signup">Signup</router-link>
+      </span>
     </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+// import { mapGetters } from 'vuex'
+
+export default {
+  name: 'App',
+  // data: function() {
+  //   return {
+  //     isLogin: this.$store.state.isLogin
+  //   }
+  // },
+  // components: {
+  //   TodoForm,
+  //   TodoList,
+  // },
+  methods: {
+    onLogout: function () {
+      localStorage.removeItem('jwt')
+      this.$store.dispatch('logout')
+    }
+  },
+  computed: {
+    loginStatus: function () {
+      return this.$store.state.isLogin
+    }
+  }
+
+}
+</script>
 
 <style>
 #app {
