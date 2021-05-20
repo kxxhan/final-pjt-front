@@ -10,7 +10,12 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    beforeEnter : function (to, from, next) {
+      console.log(to);
+      console.log(from);
+      console.log(next);
+    }
   },
   {
     path: '/about',

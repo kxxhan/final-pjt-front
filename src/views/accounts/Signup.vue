@@ -4,18 +4,22 @@
     <div>
       <label for="email">Email: </label>
       <input type="email" id="email" v-model="credentials.email">
+      <span v-if="invalidMessage.email">{{ invalidMessage.email }} </span>
     </div>
     <div>
       <label for="username">사용자 이름: </label>
       <input type="text" id="username" v-model="credentials.username">
+      <span v-if="invalidMessage.username">{{ invalidMessage.username }} </span>
     </div>
     <div>
       <label for="password">비밀번호: </label>
       <input type="password" id="password" v-model="credentials.password">
+      <span v-if="invalidMessage.password">{{ invalidMessage.password }} </span>
     </div>
     <div>
       <label for="passwordConfirm">비밀번호 확인: </label>
-      <input type="password" id="passwordConfirm" v-model="credentials.passwordConfirm"> 
+      <input type="password" id="passwordConfirm" v-model="credentials.passwordConfirm">
+      <span v-if="invalidMessage.passwordConfirm">{{ invalidMessage.passwordConfirm }} </span>
     </div>
     <button @click="signup">회원가입</button>
   </div>
@@ -36,36 +40,45 @@ export default {
         username: '',
         password: '',
         passwordConfirm: '',
+      },
+      invalidMessage : {
+        email: '',
+        username: '',
+        password: '',
+        passwordConfirm: '',
       }
     }
   },
   methods: {
-    signup: function () {
+    signup: async function () {
       // 1. 아이디, 이메일, 비밀번호가 빈칸이면 alert 후 리턴
-      if (this.isValid()) {
-        // 2. 통과시 
-        axios({
-          method: 'POST',
-          url: SERVER_URL + '/accounts/signup/',
-          data: this.credentials,
-        }).then(async () => {
-          const credentials = {
-            email : this.credentials.email,
-            password : this.credentials.password,
-          }
-          const token = await this.$store.dispatch('login', credentials)
-          if (token) {
-            localStorage.setItem('jwt', token)
-            console.log(this.$store.state.isLogin);
-          }else{
-            alert('로그인 정보를 확인해 주세요')
-          }
-        }).catch(err => {
-          console.log(err)
-        })
+      // if (! this.isValid()) return 
 
+      // 2. 통과시 
+      const response = await axios({
+        method: 'POST',
+        url: SERVER_URL + '/accounts/signup/',
+        data: this.credentials,
+      }).catch(err => {
+        const data = err.response.data
+        for (const key in data) {
+          this.invalidMessage[key] = data[key][0]
+        }
+      })
 
+      
+      if (!response) return
 
+      // 3. 회원 가입 성공 시 로그인 진행
+      const credentials = {
+        email : this.credentials.email,
+        password : this.credentials.password,
+      }
+      const token = await this.$store.dispatch('login', credentials)
+      if (token) {
+        localStorage.setItem('jwt', token)
+      }else{
+        alert('로그인에 실패했습니다. 로그인 페이지로 이동합니다.')
       }
       
     },
@@ -88,3 +101,10 @@ export default {
   // }
 }
 </script>
+
+<style scoped>
+  span {
+    color : crimson;
+    font-size: 0.8rem;
+  }
+</style>
