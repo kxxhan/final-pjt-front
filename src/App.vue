@@ -6,7 +6,7 @@
         <router-link to="/about">About</router-link> |
         <router-link to="#" @click.native="onLogout">Logout</router-link>
       </span>
-      <span v-if="!loginStatus">
+      <span v-else>
         <router-link to="/login">Login</router-link> |
         <router-link to="/signup">Signup</router-link>
       </span>
