@@ -41,15 +41,44 @@ export default {
   },
   methods: {
     signup: function () {
-      axios({
-        method: 'POST',
-        url: SERVER_URL + '/accounts/signup/',
-        data: this.credentials,
-      }).then(res => {
-        console.log(res)
-      }).catch(err => {
-        console.log(err)
-      })
+      // 1. 아이디, 이메일, 비밀번호가 빈칸이면 alert 후 리턴
+      if (this.isValid()) {
+        // 2. 통과시 
+        axios({
+          method: 'POST',
+          url: SERVER_URL + '/accounts/signup/',
+          data: this.credentials,
+        }).then(async () => {
+          const credentials = {
+            email : this.credentials.email,
+            password : this.credentials.password,
+          }
+          const token = await this.$store.dispatch('login', credentials)
+          if (token) {
+            localStorage.setItem('jwt', token)
+            console.log(this.$store.state.isLogin);
+          }else{
+            alert('로그인 정보를 확인해 주세요')
+          }
+        }).catch(err => {
+          console.log(err)
+        })
+
+
+
+      }
+      
+    },
+    isValid : function () {
+      if (!this.credentials.email.trim() || !this.credentials.username.trim() || !this.credentials.password.trim()) {
+        alert('빈 항목이 있습니다.')
+        return false
+      }else if (this.credentials.password != this.credentials.passwordConfirm) {
+        alert('비밀번호 확인이 일치하지 않습니다.')
+        return false
+      }else{
+        return true
+      }
     }
   },
   // created: function () {
