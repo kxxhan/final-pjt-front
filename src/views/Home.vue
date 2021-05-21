@@ -4,7 +4,7 @@
     <!-- <button @click="getResult">popular</button> -->
     <div v-for='result in results' :key='result.id'>
       <p>{{result.title}}</p>
-      <img v-bind:src="'http://image.tmdb.org/t/p/w500/' +    result.poster_path" width='300px'>
+      <img v-bind:src="'http://image.tmdb.org/t/p/w500/' + result.poster_path" width='300px'>
     </div>
     <!-- <input type='text' v-model="query" @keyup="getResult(query)"> -->
   </div>
@@ -12,6 +12,8 @@
 
 <script>
 import axios from 'axios'
+
+const SERVER_URL = process.env.VUE_APP_SERVER_URL
 
 export default {
   name: 'Home',
@@ -25,13 +27,19 @@ export default {
     getResult: function () {
       axios({
         method: 'get',
-        url: 'https://api.themoviedb.org/3/movie/popular?api_key=3ba0ab6eaf6d388c9d40f9c95a9fcdf1&language=ko-KR&page=1'
+        url: SERVER_URL + '/movies/showmovies/',
+        // localStorage에 있는 jwt(jason web token)을 headers로 요청과 같이 넘겨준다.
+        headers: {
+          Authorization: `JWT ${localStorage.getItem('jwt')}`
+        }
       }).then(res => {
+        // Promise로 받은 json데이터를 result에 할당
         console.log(res)
-        this.results = res.data.results
+        this.results = res.data
       })
     }
   },
+  // created 될 때 getResult 실행 => DB에 있는 영화 정보를 받아서 뿌린다.
   created: function () {
     this.getResult()
   },
