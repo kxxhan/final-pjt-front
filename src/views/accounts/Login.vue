@@ -30,7 +30,7 @@ export default {
       const token = await this.$store.dispatch('login', this.credentials)
       if (token) {
         localStorage.setItem('jwt', token)
-        console.log(this.$store.state.isLogin);
+        this.$router.push({ name : 'Home'})
       }else{
         alert('로그인 정보를 확인해 주세요')
       }
@@ -39,7 +39,8 @@ export default {
       if (!this.credentials.email.trim() || !this.credentials.password.trim()) {
         alert('빈 항목이 있습니다.')
         return false
-      }else return true
+      }
+      return true
     }
   }
 }

@@ -52,7 +52,7 @@ export default {
   methods: {
     signup: async function () {
       // 1. 아이디, 이메일, 비밀번호가 빈칸이면 alert 후 리턴
-      // if (! this.isValid()) return 
+      if (! this.isValid()) return 
 
       // 2. 통과시 
       const response = await axios({
@@ -77,6 +77,7 @@ export default {
       const token = await this.$store.dispatch('login', credentials)
       if (token) {
         localStorage.setItem('jwt', token)
+        this.$router.push({ name : 'Home'})
       }else{
         alert('로그인에 실패했습니다. 로그인 페이지로 이동합니다.')
       }
@@ -94,11 +95,6 @@ export default {
       }
     }
   },
-  // created: function () {
-  //   if (this.isLogin) {
-  //     this.$router.push({ name: 'TodoList' })
-  //   }
-  // }
 }
 </script>
 
