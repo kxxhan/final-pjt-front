@@ -52,7 +52,7 @@ export default {
   methods: {
     signup: async function () {
       // 1. 아이디, 이메일, 비밀번호가 빈칸이면 alert 후 리턴
-      // if (! this.isValid()) return 
+      if (! this.isValid()) return 
 
       // 2. 통과시 
       const response = await axios({

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import About from '../views/About.vue'
+import MovieDetail from '../views/MovieDetail.vue'
 import Signup from '@/views/accounts/Signup'
 import Login from '@/views/accounts/Login'
 import store from '@/store/index.js'
@@ -20,9 +20,9 @@ const routes = [
     }
   },
   {
-    path: '/about',
-    name: 'About',
-    component : About,
+    path: '/movie/:movieId',
+    name: 'MovieDetail',
+    component : MovieDetail,
     beforeEnter : function (to, from, next) {
       if (store.state.isLogin){
         next()
