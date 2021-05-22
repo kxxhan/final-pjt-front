@@ -28,13 +28,9 @@ export default {
       axios({
         method: 'get',
         url: SERVER_URL + '/movies/showmovies/',
-        // localStorage에 있는 jwt(jason web token)을 headers로 요청과 같이 넘겨준다.
-        headers: {
-          Authorization: `JWT ${localStorage.getItem('jwt')}`
-        }
       }).then(res => {
         // Promise로 받은 json데이터를 result에 할당
-        console.log(res)
+        // console.log(res)
         this.results = res.data
       })
     }

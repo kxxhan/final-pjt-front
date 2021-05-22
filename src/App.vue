@@ -2,13 +2,13 @@
   <div id="app">
     <div id="nav">
       <span v-if="loginStatus">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link> |
+        <router-link :to="{ name : 'Home' }">Home</router-link> |
+        <router-link :to="{ name : 'About' }">About</router-link> |
         <router-link to="#" @click.native="onLogout">Logout</router-link>
       </span>
       <span v-else>
-        <router-link to="/login">Login</router-link> |
-        <router-link to="/signup">Signup</router-link>
+        <router-link :to="{ name : 'Login' }">Login</router-link> |
+        <router-link :to="{ name : 'Signup' }">Signup</router-link>
       </span>
     </div>
     <router-view/>
@@ -16,24 +16,14 @@
 </template>
 
 <script>
-// import axios from 'axios'
-// import { mapGetters } from 'vuex'
-
+import axios from 'axios'
 export default {
   name: 'App',
-  // data: function() {
-  //   return {
-  //     isLogin: this.$store.state.isLogin
-  //   }
-  // },
-  // components: {
-  //   TodoForm,
-  //   TodoList,
-  // },
   methods: {
-    onLogout: function () {
+    onLogout: async function () {
       localStorage.removeItem('jwt')
-      this.$store.dispatch('logout')
+      this.$store.commit('LOGOUT')
+      this.$router.push({ name : 'Login' })
     }
   },
   computed: { // 1. computed로 
@@ -41,12 +31,15 @@ export default {
       return this.$store.state.isLogin
     }
   },
-  // created: function () {
-  //   const jwt = localStorage.getItem('jwt')
-  //   if (jwt) {
-  //     axios.defaults.headers.common['Authorization'] = `JWT ${jwt}`
-  //   }
-  // }
+  created: function () {
+    // console.log('app created실행');
+    const jwt = localStorage.getItem('jwt')
+    if (jwt) { // 토큰이 있으면 헤더에 넣어주고, isLogin도 true로 만들어 줘야 바람직하다
+      this.$store.commit('LOGIN')
+      axios.defaults.headers.common['Authorization'] = `JWT ${jwt}`
+      this.$router.push({ name : 'Home' })
+    }
+  }
 
 }
 </script>

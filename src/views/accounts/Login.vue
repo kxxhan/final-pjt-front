@@ -30,7 +30,7 @@ export default {
       const token = await this.$store.dispatch('login', this.credentials)
       if (token) {
         localStorage.setItem('jwt', token)
-        console.log(this.$store.state.isLogin);
+        this.$router.push({ name : 'Home'})
       }else{
         alert('로그인 정보를 확인해 주세요')
       }
