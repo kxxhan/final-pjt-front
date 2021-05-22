@@ -27,7 +27,6 @@ export default {
         url: SERVER_URL + '/movies/showmovies/',
       }).then(res => {
         // Promise로 받은 json데이터를 result에 할당
-        // console.log(res)
         this.movies = res.data
       })
     }
