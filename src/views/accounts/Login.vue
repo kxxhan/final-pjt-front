@@ -39,7 +39,8 @@ export default {
       if (!this.credentials.email.trim() || !this.credentials.password.trim()) {
         alert('빈 항목이 있습니다.')
         return false
-      }else return true
+      }
+      return true
     }
   }
 }

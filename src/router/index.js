@@ -17,7 +17,6 @@ const routes = [
       }else{
         next({ name : 'Login'})
       }
-      
     }
   },
   {
@@ -30,7 +29,6 @@ const routes = [
       }else{
         next({ name : 'Login'})
       }
-      
     }
   },
   {

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <span v-if="loginStatus">
+      <span v-if="isLogin">
         <router-link :to="{ name : 'Home' }">Home</router-link> |
         <router-link :to="{ name : 'About' }">About</router-link> |
         <router-link to="#" @click.native="onLogout">Logout</router-link>
@@ -22,12 +22,13 @@ export default {
   methods: {
     onLogout: async function () {
       localStorage.removeItem('jwt')
+      axios.defaults.headers.common['Authorization'] = ''
       this.$store.commit('LOGOUT')
       this.$router.push({ name : 'Login' })
     }
   },
   computed: { // 1. computed로 
-    loginStatus: function () { // store에 저장되어있는 isLogin 값을 사용할 수 있게 해준다.
+    isLogin: function () { // store에 저장되어있는 isLogin 값을 사용할 수 있게 해준다.
       return this.$store.state.isLogin
     }
   },
