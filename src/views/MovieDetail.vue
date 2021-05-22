@@ -1,9 +1,16 @@
-<template>j
+<template>
   <div class="movie-detail">
-    <!-- <i class="fas fa-star" v-for="i in fullStar" :key='i'></i>
-    <i class="fas fa-star-half-alt" v-for=" j in halfStar" :key='j'></i>
-    <i class="far fa-star" v-for="k in emptyStar" :key='k'></i> -->
-    <span v-if="rating">내 점수 : {{ rating }}</span>
+    <!-- https://gist.github.com/Enjoywater/c6f78ab957e9f5acf3b8b6e518447326 -->
+    <span v-if="rating">내 점수 : 
+      <i class="fas fa-star" v-for="i in fullStar" :key='i'></i>
+      <i class="fas fa-star-half-alt" v-for=" j in halfStar" :key='j'></i>
+      <i class="far fa-star" v-for="k in emptyStar" :key='k'></i>
+      ({{ rating }} 점)
+    </span>
+    <span v-else>
+      <i class="far fa-star" v-for="k in emptyStar" :key='k'></i>
+      (평가없음)
+    </span>
     <button @click='vote'>8점 주기</button>
     <h1>{{ movie.title }} </h1>
     <small>{{ movie.original_title }}</small>
@@ -26,8 +33,8 @@ export default {
     }
   },
   methods : {
-    vote : function () {
-      axios({
+    vote : async function () {
+      const response = await axios({
         method : 'post',
         url : SERVER_URL + `/movies/${this.$route.params.movieId}/vote`,
         data : {
@@ -35,6 +42,12 @@ export default {
           rating : 8
         },
       })
+      .catch((err)=>{
+        console.log(err)
+      })
+
+      if (!response) return
+      this.rating = response.data.rating
     }
   },
   created : async function () {
@@ -45,22 +58,22 @@ export default {
     }).catch((err)=>{
       console.log(err);
     })
-    console.log(response.data);
     if (!response) return
+    console.log(response.data);
     this.movie = response.data.movie
     this.rating = response.data.rating
   },
-  // computed : {
-  //   fullStar : function () {
-  //     return parseInt(this.rating / 2)
-  //   },
-  //   halfStar : function () {
-  //     return this.rating % 2
-  //   },
-  //   emptyStar : function () {
-  //     return 5-this.fullStar+this.halfStar
-  //   }
-  // }
+  computed : {
+    fullStar : function () {
+      return parseInt(this.rating / 2)
+    },
+    halfStar : function () {
+      return this.rating % 2
+    },
+    emptyStar : function () {
+      return 5-this.fullStar+this.halfStar
+    }
+  }
 }
 </script>
 
