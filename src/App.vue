@@ -16,6 +16,7 @@
 </template>
 
 <script>
+// import axios from 'axios'
 // import { mapGetters } from 'vuex'
 
 export default {
@@ -35,11 +36,17 @@ export default {
       this.$store.dispatch('logout')
     }
   },
-  computed: {
-    loginStatus: function () {
+  computed: { // 1. computed로 
+    loginStatus: function () { // store에 저장되어있는 isLogin 값을 사용할 수 있게 해준다.
       return this.$store.state.isLogin
     }
-  }
+  },
+  // created: function () {
+  //   const jwt = localStorage.getItem('jwt')
+  //   if (jwt) {
+  //     axios.defaults.headers.common['Authorization'] = `JWT ${jwt}`
+  //   }
+  // }
 
 }
 </script>
