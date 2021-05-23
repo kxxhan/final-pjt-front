@@ -2,9 +2,6 @@
   <div class="movie-detail">
     <!-- https://gist.github.com/Enjoywater/c6f78ab957e9f5acf3b8b6e518447326 -->
     <span v-if="rating">내 점수 : 
-      <i class="fas fa-star" v-for="i in fullStar" :key='i'></i>
-      <i class="fas fa-star-half-alt" v-for=" j in halfStar" :key='j'></i>
-      <i class="far fa-star" v-for="k in emptyStar" :key='k'></i>
       ({{ rating }} 점)
     </span>
     <span v-else>
@@ -63,17 +60,6 @@ export default {
     this.movie = response.data.movie
     this.rating = response.data.rating
   },
-  computed : {
-    fullStar : function () {
-      return parseInt(this.rating / 2)
-    },
-    halfStar : function () {
-      return this.rating % 2
-    },
-    emptyStar : function () {
-      return 5-this.fullStar+this.halfStar
-    }
-  }
 }
 </script>
 
