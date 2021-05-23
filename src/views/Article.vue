@@ -5,16 +5,17 @@
     <input type="text" v-model="query" @input="getAccordedMovie(query)" placeholder="검색">
     <div v-for="accordemovie in accordedmovies" :key="accordemovie.id">
       <ul>
-        <li @click="setMovieTitle(accordemovie.title)"> {{ accordemovie.title }}</li>
+        <!-- 클릭 이벤트 발생시 setMovieInfo 함수 호출 => 선택된 영화의 제목과 id를 data에 저장 -->
+        <li @click="setMovieInfo(accordemovie.title, accordemovie.id)"> {{ accordemovie.title }}</li>
       </ul>
     </div>
     <div>
      <h3>영화제목 : {{ this.movietitle }}</h3>
-     <input type="text" :v-model="articletitle">
+     <input type="text" v-model="credentials.articletitle">
      <br>
-     <input type="text" :v-model="content">
+     <input type="text" v-model="credentials.content">
      <br>
-     <button>저장</button>
+     <button @click="createArticle">저장</button>
     </div>
   </div>
   <!-- 어떤 영화인지 검색할 query를 담을 input -->
@@ -29,6 +30,9 @@
 
 </template>
 <script>
+import axios from 'axios'
+const SERVER_URL = process.env.VUE_APP_SERVER_URL
+
 export default {
   name: 'Article',
   data: function () {
@@ -37,8 +41,11 @@ export default {
       accordedmovies: [],
       query: '',
       movietitle: '',
-      articletitle: '',
-      content: '',
+      selectedmovieId: '',
+      credentials : {
+        articletitle: '',
+        content: '',
+      },
       // article에 넣어줄거는 담아서 보내주는게 나을 수도 있겠다.
     }
   },
@@ -46,16 +53,24 @@ export default {
     getAccordedMovie: function (query) {
       this.accordedmovies = []
       for (let i = 0; i < this.movies.length; i++) {
+        // movies에 담긴 movie 중 title이 query를 포함하고 있는 경우를 모든공백을 제거하고 확인
         if (this.movies[i].title.replace(/(\s*)/g, "").includes(query.replace(/(\s*)/g, ""))) {
-          console.log(query)
+          //accordedmovies에 넣어준다.
           this.accordedmovies.push(this.movies[i])
         }
       }
-      // console.log(query.replace(/(\s*)/g, ""))
-      console.log(this.accordedmovies)
     },
-    setMovieTitle: function (select) {
-      this.movietitle = select
+    setMovieInfo: function (title, id) {
+      this.movietitle = title
+      this.selectedmovieId = id
+    },
+    createArticle: function () {
+      axios({
+        method: 'POST',
+        url: `${SERVER_URL}/articles/movie/${this.selectedmovieId}/`,
+      }).then((res) => {
+        console.log(res)
+      })
     }
   }
 }
