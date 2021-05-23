@@ -14,7 +14,7 @@
 export default {
   name: 'Board',
   data: function () {
-
+    return {}
   },
   // components: {
   //   Article

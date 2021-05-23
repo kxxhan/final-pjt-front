@@ -27,7 +27,7 @@
 
     
     
-    <hr>
+    <br>
     <img :src="'http://image.tmdb.org/t/p/w500/'+ movie.poster_path " alt="">
 
   </div>
