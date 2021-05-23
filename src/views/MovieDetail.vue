@@ -1,5 +1,19 @@
 <template>
   <div class="movie-detail">
+    <!-- 영화 리뷰 글 임시 시작 -->
+    <hr>
+    <ul>
+      <li v-for="article in articles" :key='article.id'> 
+        No.{{ article.id }} |
+        <b>{{ article.title }} </b> <span>{{ article.content }}</span> 
+        <br>
+        작성자 {{article.user.username}} |
+        <small>작성일 : {{ article.created_at }}</small>
+      </li>
+      <hr>
+    </ul>
+    <!-- 영화 리뷰 글 임시 끝 -->
+
     <!-- https://gist.github.com/Enjoywater/c6f78ab957e9f5acf3b8b6e518447326 -->
     <h1>{{ movie.title }} </h1>
     <small>({{ movie.original_title }})</small>
@@ -24,11 +38,9 @@
         </button>
       </span>
     </p>
-
-    
-    
     <br>
     <img :src="'http://image.tmdb.org/t/p/w500/'+ movie.poster_path " alt="">
+    <!-- 여기부터 영화 리뷰 글 페이지 -->
 
   </div>
 </template>
@@ -44,6 +56,20 @@ export default {
       movie : {},
       rating : null,
       new_rating : null,
+      articles : [
+        {
+          id : 6,
+          title : '영화리뷰에옹',
+          content : '리뷰 내용이에옹',
+          created_at : Date.now(),
+          updated_at : Date.now(),
+          movie : 35,
+          user : {
+            username : 'ㅋㅋ루삥뽕',
+          },
+          like_users : [],
+        }
+      ],
     }
   },
   methods : {
@@ -97,3 +123,15 @@ export default {
 }
 </script>
 
+<style scoped>
+ul {
+  padding-left : 5px;
+}
+li {
+  list-style: none;
+
+}
+b {
+  text-align: start;
+}
+</style>
