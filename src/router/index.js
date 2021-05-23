@@ -1,11 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
 import Home from '../views/Home.vue'
 import MovieDetail from '../views/MovieDetail.vue'
-import Signup from '@/views/accounts/Signup'
-import Login from '@/views/accounts/Login'
+
 import Board from '@/views/Board.vue'
 import Article from '@/views/Article.vue'
+import ArticleDetail from '@/views/ArticleDetail.vue'
+
+import Signup from '@/views/accounts/Signup'
+import Login from '@/views/accounts/Login'
 import store from '@/store/index.js'
 Vue.use(VueRouter)
 const routes = [
@@ -13,6 +17,18 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+    beforeEnter : function (to, from, next) {
+      if (store.state.isLogin){
+        next()
+      }else{
+        next({ name : 'Login'})
+      }
+    }
+  },
+  {
+    path: '/movie/:movieId',
+    name: 'MovieDetail',
+    component : MovieDetail,
     beforeEnter : function (to, from, next) {
       if (store.state.isLogin){
         next()
@@ -32,17 +48,11 @@ const routes = [
     component: Article
   },
   {
-    path: '/movie/:movieId',
-    name: 'MovieDetail',
-    component : MovieDetail,
-    beforeEnter : function (to, from, next) {
-      if (store.state.isLogin){
-        next()
-      }else{
-        next({ name : 'Login'})
-      }
-    }
+    path: '/article/:articleId',
+    name: 'ArticleDetail',
+    component: ArticleDetail
   },
+
   {
     path: '/signup',
     name: 'Signup',
