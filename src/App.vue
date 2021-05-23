@@ -3,7 +3,7 @@
     <div id="nav">
       <span v-if="loginStatus">
         <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link> |
+        <router-link to="/board">Board</router-link> |
         <router-link to="#" @click.native="onLogout">Logout</router-link>
       </span>
       <span v-else>
