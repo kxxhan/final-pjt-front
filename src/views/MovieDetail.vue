@@ -1,6 +1,8 @@
 <template>
   <div class="movie-detail">
     <!-- https://gist.github.com/Enjoywater/c6f78ab957e9f5acf3b8b6e518447326 -->
+    <h1>{{ movie.title }} </h1>
+    <small>({{ movie.original_title }})</small>
     <p v-if="rating">
       내 평점  <span v-for='i in rating' :key='i'>⭐</span>
     </p>
@@ -14,15 +16,18 @@
       <select v-model="new_rating">
         <option :value="i" v-for='i in 10' :key='i'>{{ i }}</option>
       </select> 
-      <span v-if='new_rating'> | <button  @click='vote'>점수 주기</button></span>
-      
+      <span v-if='new_rating'> | 
+        <button  @click='vote'>
+          평점 
+          <span v-if='rating'>수정</span> 
+          <span v-else >등록</span> 
+        </button>
+      </span>
     </p>
 
     
     
-    <h1>{{ movie.title }} </h1>
-    <small>{{ movie.original_title }}</small>
-    <br>
+    <hr>
     <img :src="'http://image.tmdb.org/t/p/w500/'+ movie.poster_path " alt="">
 
   </div>

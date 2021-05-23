@@ -2,8 +2,11 @@
   <div class="home">
     <h1>TMDB TEST</h1>
     <div v-for='movie in movies' :key='movie.id'>
-      <router-link :to="{ path : `movie/${movie.id}` }">{{movie.title}}</router-link>
-      <img :src="'http://image.tmdb.org/t/p/w500/' + movie.poster_path" width='300px'>
+      <router-link :to="{ path : `movie/${movie.id}` }">
+        <img :src="'http://image.tmdb.org/t/p/w500/' + movie.poster_path" width='300px'>
+        <p>{{movie.title}}</p> 
+      </router-link>
+      
     </div>
   </div>
 </template>
