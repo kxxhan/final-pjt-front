@@ -27,21 +27,15 @@ export default new Vuex.Store({
           data,
         })
         context.commit('LOGIN') // 3. isLogin true로 변경하기
-        return response.data.token // 4. 토큰 리턴하기
+        const token = response.data.token
+        axios.defaults.headers.common['Authorization'] = `JWT ${token}`
+        return token // 4. 토큰 리턴하기
       } catch (error) {
         // axios 요청에 실패할 경우 undefined를 리턴하므로 login의 if token에 걸린다.
         console.log(error)
       }
     },
-    logout : function (context) {
-      context.commit('LOGOUT')
-    }
   },
-  // getters: { // 타 vue에서 isLogin status를 가져오기 위해서 getters 작성.
-  //   loginStatus: function (state) {
-  //     return state.isLogin
-  //   }
-  // },
   modules: {
   }
 })
