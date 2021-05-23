@@ -9,31 +9,19 @@
 </template>
 
 <script>
-import axios from 'axios'
-
-const SERVER_URL = process.env.VUE_APP_SERVER_URL
-
 export default {
   name: 'Home',
-  data: function () {
-    return {
-      movies: '',
+  created: async function () {
+    if (this.$store.state.movies.length)  return 
+    const result = await this.$store.dispatch('getMovies')
+    if (!result) {
+      alert('영화를 서버에서 받아오지 못했습니다.')
     }
   },
-  methods: {
-    getMovies: function () {
-      axios({
-        method: 'get',
-        url: SERVER_URL + '/movies/showmovies/',
-      }).then(res => {
-        // Promise로 받은 json데이터를 result에 할당
-        this.movies = res.data
-      })
+  computed : {
+    movies : function () {
+      return this.$store.state.movies
     }
-  },
-  // created 될 때 getResult 실행 => DB에 있는 영화 정보를 받아서 뿌린다.
-  created: function () {
-    this.getMovies()
-  },
+  }
 }
 </script>
