@@ -39,7 +39,7 @@
       </span>
     </p>
     <br>
-    <img :src="'http://image.tmdb.org/t/p/w500/'+ movie.poster_path " alt="">
+    <img v-if='movie.poster_path' :src="'http://image.tmdb.org/t/p/w500/'+ movie.poster_path " alt="">
     <!-- 여기부터 영화 리뷰 글 페이지 -->
 
   </div>
@@ -98,6 +98,7 @@ export default {
           movie_id : this.$route.params.movieId,
         },
       }).catch((err)=>{
+        
         console.log(err)
       })
 
@@ -112,7 +113,10 @@ export default {
       method : 'POST',
       url: SERVER_URL + `/movies/${this.$route.params.movieId}/`,
     }).catch((err)=>{
-      console.log(err);
+      const status = err.response.status
+      if (status === 401){
+        this.$store.dispatch('logout')
+      }
     })
     if (!response) return
     console.log(response.data);

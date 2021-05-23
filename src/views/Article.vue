@@ -9,12 +9,12 @@
       </ul>
     </div>
     <div>
-     <h3>영화제목 : {{ this.movietitle }}</h3>
-     <input type="text" :v-model="articletitle">
-     <br>
-     <input type="text" :v-model="content">
-     <br>
-     <button>저장</button>
+    <h3>영화제목 : {{ this.movietitle }}</h3>
+    <input type="text" :v-model="articletitle">
+    <br>
+    <input type="text" :v-model="content">
+    <br>
+    <button>저장</button>
     </div>
   </div>
   <!-- 어떤 영화인지 검색할 query를 담을 input -->
@@ -47,12 +47,12 @@ export default {
       this.accordedmovies = []
       for (let i = 0; i < this.movies.length; i++) {
         if (this.movies[i].title.replace(/(\s*)/g, "").includes(query.replace(/(\s*)/g, ""))) {
-          console.log(query)
+          // console.log(query)
           this.accordedmovies.push(this.movies[i])
         }
       }
       // console.log(query.replace(/(\s*)/g, ""))
-      console.log(this.accordedmovies)
+      // console.log(this.accordedmovies)
     },
     setMovieTitle: function (select) {
       this.movietitle = select
@@ -62,7 +62,7 @@ export default {
 </script>
 
 <style scoped>
- li {
-   list-style: none;
- }
+li {
+  list-style: none;
+}
 </style>

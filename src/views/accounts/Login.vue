@@ -27,13 +27,7 @@ export default {
   methods : {
     login : async function () {
       if (!this.isValid()) return
-      const token = await this.$store.dispatch('login', this.credentials)
-      if (token) {
-        localStorage.setItem('jwt', token)
-        this.$router.push({ name : 'Home'})
-      }else{
-        alert('로그인 정보를 확인해 주세요')
-      }
+      this.$store.dispatch('login', this.credentials)
     },
     isValid : function () {
       if (!this.credentials.email.trim() || !this.credentials.password.trim()) {

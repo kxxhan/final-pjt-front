@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import router from '@/router/index.js'
 
 Vue.use(Vuex)
 const SERVER_URL = process.env.VUE_APP_SERVER_URL
@@ -24,22 +25,29 @@ export default new Vuex.Store({
   actions: {
     login : async function (context, data) {
       // 1. axios 호출해서 로그인 처리 후 토큰 받기
-      try {
-        const response = await axios({
-          method: 'POST',
-          url: SERVER_URL + '/accounts/api-token-auth/',
-          data,
-        })
-        context.commit('LOGIN') // 2. isLogin true로 변경하기
-        // 3. 토큰을 axios 에 기본 탑재
-        const token = response.data.token
-        axios.defaults.headers.common['Authorization'] = `JWT ${token}`
-        return token // 4. 토큰 리턴하기
-      } catch (error) {
+      const response = await axios({
+        method: 'POST',
+        url: SERVER_URL + '/accounts/api-token-auth/',
+        data,
+      }).catch((err)=>{
         // axios 요청에 실패할 경우 undefined를 리턴하므로 login의 if token에 걸린다.
-        console.log(error)
-      }
+        alert('로그인 정보를 확인해 주세요\n' + err)
+      })
+      context.commit('LOGIN') // 2. isLogin true로 변경하기
+      // 3. 토큰을 axios 에 기본 탑재
+      const token = response.data.token
+      localStorage.setItem('jwt', token)
+      axios.defaults.headers.common['Authorization'] = `JWT ${token}`
+      router.push({ name : 'Home' })
     },
+
+    logout : function name(context) {
+      context.commit('LOGOUT')
+      localStorage.removeItem('jwt')
+      axios.defaults.headers.common['Authorization'] = ''
+      router.push({ name : 'Login' })
+    },
+    
     getMovies : async function (context) {
       const response = await axios({
         method: 'get',
@@ -52,6 +60,4 @@ export default new Vuex.Store({
       return true
     }
   },
-  modules: {
-  }
 })

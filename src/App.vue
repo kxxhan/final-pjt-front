@@ -5,7 +5,7 @@
         <router-link :to="{ name : 'Home' }">Home</router-link> |
         <router-link to="/board">Board</router-link> |
         <router-link to="/article/6">임시 Article</router-link> |
-        <router-link to="#" @click.native="onLogout">Logout</router-link>
+        <router-link to="#" @click.native="logout">Logout</router-link>
       </span>
       <span v-else>
         <router-link :to="{ name : 'Login' }">Login</router-link> |
@@ -21,11 +21,8 @@ import axios from 'axios'
 export default {
   name: 'App',
   methods: {
-    onLogout: async function () {
-      localStorage.removeItem('jwt')
-      axios.defaults.headers.common['Authorization'] = ''
-      this.$store.commit('LOGOUT')
-      this.$router.push({ name : 'Login' })
+    logout: async function () {
+      this.$store.dispatch('logout')
     }
   },
   computed: { // 1. computed로 

@@ -17,13 +17,13 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    beforeEnter : function (to, from, next) {
-      if (store.state.isLogin){
-        next()
-      }else{
-        next({ name : 'Login'})
-      }
-    }
+    // beforeEnter : function (to, from, next) {
+    //   if (store.state.isLogin){
+    //     next()
+    //   }else{
+    //     next({ name : 'Login'})
+    //   }
+    // }
   },
   {
     path: '/movie/:movieId',
