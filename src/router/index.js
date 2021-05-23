@@ -4,6 +4,8 @@ import Home from '../views/Home.vue'
 import MovieDetail from '../views/MovieDetail.vue'
 import Signup from '@/views/accounts/Signup'
 import Login from '@/views/accounts/Login'
+import Board from '@/views/Board.vue'
+import Article from '@/views/Article.vue'
 import store from '@/store/index.js'
 Vue.use(VueRouter)
 const routes = [
@@ -18,6 +20,16 @@ const routes = [
         next({ name : 'Login'})
       }
     }
+  },
+  {
+    path: '/board',
+    name: 'Board',
+    component: Board
+  },
+  {
+    path: '/article',
+    name: 'Article',
+    component: Article
   },
   {
     path: '/movie/:movieId',
@@ -53,6 +65,7 @@ const routes = [
       next()
     }
   },
+  
 ]
 
 const router = new VueRouter({
