@@ -11,6 +11,10 @@
             <router-link :to="{ path : `/board/${article.id}` }">{{ article.title }}</router-link>
           </h3>
           <h4>리뷰내용 : {{ article.content }}</h4>
+          <h3>글쓴이 : {{ article.user.username }}</h3>
+          <!-- <p>작성 시간 : {{ Date.parse(article.created_at) }} </p> -->
+          <p>작성 시간 : {{ new Date(article.created_at).toLocaleString() }} </p>
+          <p>수정 시간 : {{ new Date(article.updated_at).toLocaleString() }}</p>
           <br>
         </li>
       </ul>
