@@ -9,7 +9,8 @@ const SERVER_URL = process.env.VUE_APP_SERVER_URL
 export default new Vuex.Store({
   state: {
     isLogin : false,
-    movies : []
+    movies : [],
+    recommends : {},
   },
   mutations: {
     LOGIN : function (state) {
@@ -17,9 +18,14 @@ export default new Vuex.Store({
     },
     LOGOUT : function(state) {
       state.isLogin = false
+      state.movies = []
+      state.recommends = []
     },
     SET_MOVIES : function (state, payload) {
       state.movies = payload
+    },
+    SET_RECOMMENDS : function (state, payload) {
+      state.recommends = payload
     }
   },
   actions: {
@@ -58,6 +64,20 @@ export default new Vuex.Store({
       if (!response) return false
       context.commit('SET_MOVIES', response.data)
       return true
-    }
+    },
+    // 추천 영화 로직
+    getRecommends : async function (context) {
+      const response = await axios({
+        method: 'get',
+        url: SERVER_URL + '/movies/test/',
+      }).catch((err)=>{
+        console.log(err);
+      })
+
+      if (!response) return false
+      context.commit('SET_RECOMMENDS', response.data)
+      return true
+    },
+
   },
 })
