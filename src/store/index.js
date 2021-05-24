@@ -37,7 +37,7 @@ export default new Vuex.Store({
         data,
       }).catch((err)=>{
         // axios 요청에 실패할 경우 undefined를 리턴하므로 login의 if token에 걸린다.
-        alert('로그인 정보를 확인해 주세요\n' + err)
+        alert('로그인 정보를 확인해 주세요\n' + err.response)
       })
       if (!response) return
       context.commit('LOGIN') // 2. isLogin true로 변경하기
@@ -60,7 +60,7 @@ export default new Vuex.Store({
         method: 'get',
         url: SERVER_URL + '/movies/showmovies/',
       }).catch((err)=>{
-        console.log(err);
+        console.log(err.response);
       })
       if (!response) return false
       context.commit('SET_MOVIES', response.data)
@@ -72,7 +72,7 @@ export default new Vuex.Store({
         method: 'get',
         url: SERVER_URL + '/movies/test/',
       }).catch((err)=>{
-        console.log(err);
+        console.log(err.response);
       })
 
       if (!response) return false
