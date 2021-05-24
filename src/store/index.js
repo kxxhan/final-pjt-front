@@ -39,12 +39,13 @@ export default new Vuex.Store({
         // axios 요청에 실패할 경우 undefined를 리턴하므로 login의 if token에 걸린다.
         alert('로그인 정보를 확인해 주세요\n' + err)
       })
+      if (!response) return
       context.commit('LOGIN') // 2. isLogin true로 변경하기
       // 3. 토큰을 axios 에 기본 탑재
       const token = response.data.token
       localStorage.setItem('jwt', token)
       axios.defaults.headers.common['Authorization'] = `JWT ${token}`
-      router.push({ name : 'Home' })
+      router.push({ name : 'Main' })
     },
 
     logout : function name(context) {

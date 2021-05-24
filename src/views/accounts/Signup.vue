@@ -74,14 +74,7 @@ export default {
         email : this.credentials.email,
         password : this.credentials.password,
       }
-      const token = await this.$store.dispatch('login', credentials)
-      if (token) {
-        localStorage.setItem('jwt', token)
-        this.$router.push({ name : 'Home'})
-      }else{
-        alert('로그인에 실패했습니다. 로그인 페이지로 이동합니다.')
-      }
-      
+      this.$store.dispatch('login', credentials)
     },
     isValid : function () {
       if (!this.credentials.email.trim() || !this.credentials.username.trim() || !this.credentials.password.trim()) {
