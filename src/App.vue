@@ -5,9 +5,11 @@
         <router-link :to="{ name : 'Main' }">Main</router-link> |
         <router-link :to="{ name : 'ArticleList' }">Board</router-link> |
         <router-link to="/article/6">임시 Article</router-link> |
+        <router-link :to="{ name : 'Recommend' }">Recommend</router-link> |
         <router-link to="#" @click.native="logout">Logout</router-link>
       </span>
       <span v-else>
+        <router-link :to="{ name : 'Home' }">Home</router-link> |
         <router-link :to="{ name : 'Login' }">Login</router-link> |
         <router-link :to="{ name : 'Signup' }">Signup</router-link>
       </span>
