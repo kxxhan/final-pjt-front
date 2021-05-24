@@ -30,7 +30,7 @@ export default {
   data : function () {
     return {
       isAuthor: false,
-       article: {
+      article: {
         // 아래 부분 없을때 TypeError가 발생하는 이유는? 렌더링은 잘 됨.
         movie : {},
         user : {}
