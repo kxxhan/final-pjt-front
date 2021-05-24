@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import Home from '@/views/Home.vue'
 import Main from '@/views/Main.vue'
+import Http404 from '@/views/Http404.vue'
 import Recommend from '@/views/Recommend.vue'
 import MovieDetail from '@/views/MovieDetail.vue'
 
@@ -99,6 +100,11 @@ const routes = [
       }
       next()
     }
+  },
+  {
+    path: '/oops',
+    name: 'Http404',
+    component: Http404,
   },
   
 ]

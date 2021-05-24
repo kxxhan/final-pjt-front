@@ -3,18 +3,15 @@
     <h1>게시판 TEST</h1>
     <router-link :to="{ name : 'ArticleCreate' }"> 게시글 작성 </router-link>
     <div>
-      <ul>
-        <li v-for="article in articleList" :key="article.id">
-          <h2>영화이름 : {{ article.movie.title }}</h2>
-          <h3>글쓴이 : {{ article.user.username }}</h3>
-          <h3>리뷰제목 :           
-            <router-link :to="{ path : `/board/${article.id}` }">{{ article.title }}</router-link>
-          </h3>
-          <h4>리뷰내용 : {{ article.content }}</h4>
-          <h3>글쓴이 : {{ article.user.username }}</h3>
+      <ul class="list-group">
+        <li class="list-group-item" v-for="article in articleList" :key="article.id">
+          <b>영화이름 : {{ article.movie.title }}</b> |
+          <b>글쓴이 : {{ article.user.username }}</b>
           <!-- <p>작성 시간 : {{ Date.parse(article.created_at) }} </p> -->
-          <p>작성 시간 : {{ new Date(article.created_at).toLocaleString() }} </p>
-          <p>수정 시간 : {{ new Date(article.updated_at).toLocaleString() }}</p>
+          <p>리뷰제목 :           
+            <router-link :to="{ path : `/board/${article.id}` }">{{ article.title }}</router-link>
+          </p>
+          <b>작성 시간 : {{ new Date(article.created_at).toLocaleString() }} | 수정 시간 : {{ new Date(article.updated_at).toLocaleString() }}</b>
           <br>
         </li>
       </ul>

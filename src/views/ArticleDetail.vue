@@ -1,10 +1,11 @@
 <template>
   <div>
     <ArticleUpdate/>
-    <h1>{{ article.movie.title }}에 대한 리뷰</h1>
-    <small>글 번호 : {{ article.id }}</small>
-    <h2>'{{ article.user.username }}'님의 리뷰 :  {{ article.title }}</h2>
-    <small>작성일 : {{ new Date(article.created_at).toLocaleString() }} | 수정일 : {{ new Date(article.updated_at).toLocaleString() }}</small>
+    <b>{{ article.movie.title }}에 대한 리뷰</b>
+    <small>(글 번호 : {{ article.id }})</small>
+    <p>작성일 : {{ new Date(article.created_at).toLocaleString() }} | 수정일 : {{ new Date(article.updated_at).toLocaleString() }}</p>
+
+    <b>'{{ article.user.username }}'님의 리뷰 :  {{ article.title }}</b>
     <hr>
     <p> {{ article.content }}</p>
 
@@ -15,8 +16,8 @@
       <button>리뷰 삭제</button>
     </div>
     <hr>
-    <p>이전글 : 모시기모시기</p>  
-    <p>다음글 : 모시기모시기</p>  
+    <b>이전글 : 모시기모시기</b>  |
+    <b>다음글 : 모시기모시기</b>  
   </div>
 </template>
 
@@ -49,7 +50,8 @@ export default {
         this.article = res.data.article
         this.isAuthor = res.data.isAuthor
       }).catch( (err) => {
-        console.log(err)
+        console.log(err.response)
+        if (err.response.status === 404) this.$router.push({ name : 'Http404'})
       })
     },
 
