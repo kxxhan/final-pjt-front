@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Home from '../views/Home.vue'
+import Main from '../views/Main.vue'
 import MovieDetail from '../views/MovieDetail.vue'
 
 import ArticleList from '@/views/ArticleList.vue'
@@ -14,9 +14,9 @@ import store from '@/store/index.js'
 Vue.use(VueRouter)
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home,
+    path: '/main',
+    name: 'Main',
+    component: Main,
     // beforeEnter : function (to, from, next) {
     //   if (store.state.isLogin){
     //     next()
@@ -59,7 +59,7 @@ const routes = [
     component: Signup,
     beforeEnter : function (to, from, next) {
       if (store.state.isLogin){
-        next({ name : 'Home' })
+        next({ name : 'Main' })
       }
       next()
     }
@@ -70,7 +70,7 @@ const routes = [
     component: Login,
     beforeEnter : function (to, from, next) {
       if (store.state.isLogin){
-        next({ name : 'Home' })
+        next({ name : 'Main' })
       }
       next()
     }

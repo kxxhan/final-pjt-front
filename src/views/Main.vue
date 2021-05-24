@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="main">
     {{recommendsKeys}}
     <section v-for='genreKey in recommendsKeys' :key='genreKey'>
       <h2>{{ genreKey }}</h2>
@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'Home',
+  name: 'Main',
   created: async function () {
     if (this.$store.state.movies.length)  return 
     const result = this.$store.dispatch('getMovies')
