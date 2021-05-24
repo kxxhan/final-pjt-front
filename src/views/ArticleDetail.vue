@@ -1,12 +1,15 @@
 <template>
   <div>
-    <small>글 번호 : {{ id }}</small>
-    <h2>'{{ user.username }}'님의 리뷰 :  {{ title }}</h2>
-    <small>작성일 : {{ created_at }} | 수정일 : {{ updated_at }}</small>
+    <ArticleUpdate/>
+    <h1>{{ article.movie.title }}에 대한 리뷰</h1>
+    <small>글 번호 : {{ article.id }}</small>
+    <h2>'{{ article.user.username }}'님의 리뷰 :  {{ article.title }}</h2>
+    <small>작성일 : {{ new Date(article.created_at).toLocaleString() }} | 수정일 : {{ new Date(article.updated_at).toLocaleString() }}</small>
     <hr>
-    <p> {{ content }}</p>
+    <p> {{ article.content }}</p>
 
     <!-- 유저가 일치하는지 여부가 중요할 것 같다. -->
+    <!-- 작성자 본인만 수정, 삭제 할 수 있다. -->
     <button>리뷰 수정</button>
     <button>리뷰 삭제</button>
     <hr>
@@ -16,21 +19,38 @@
 </template>
 
 <script>
+import axios from 'axios'
+import ArticleUpdate from '@/components/ArticleUpdate.vue'
+const SERVER_URL = process.env.VUE_APP_SERVER_URL
+
 export default {
   name : 'ArticleDetail',
   data : function () {
     return {
-      id : 6,
-      title : '영화리뷰에옹',
-      content : '재미있습니다!!',
-      created_at : Date.now(),
-      updated_at : Date.now(),
-      movie : 35,
-      user : {
-        username : 'ㅋㅋ루삥뽕',
-      },
-      like_users : [],
+      isAuthor: false,
+      article: {}
     }
+  },
+  components: {
+    ArticleUpdate
+  },
+  methods: {
+    getArticle: function () {
+      axios({
+        method: 'get',
+        url: `${SERVER_URL}/articles/${this.$route.params.articleId}/`
+      }).then( (res) => {
+        this.article = res.data.article
+        this.isAuthor = res.data.isAuthor
+      }).catch( (err) => {
+        console.log(err)
+      })
+    },
+
+  },
+  created: function () {
+    // console.log(this.$route.params)
+    this.getArticle()
   }
 }
 </script>
