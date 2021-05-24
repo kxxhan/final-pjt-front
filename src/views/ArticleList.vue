@@ -5,12 +5,15 @@
     <div>
       <ul>
         <li v-for="article in articleList" :key="article.id">
-          <h2>영화이름 : {{ article.movie }}</h2>
-          <h3>글쓴이 : {{ article.user.username }}</h3>
-          <h3>리뷰제목 :           
+          <h2>리뷰제목 :           
             <router-link :to="{ path : `/board/${article.user.id}` }">{{ article.title }}</router-link>
-          </h3>
+          </h2>
+          <h3>영화이름 : {{ article.movie }}</h3>
           <h4>리뷰내용 : {{ article.content }}</h4>
+          <h3>글쓴이 : {{ article.user.username }}</h3>
+          <!-- <p>작성 시간 : {{ Date.parse(article.created_at) }} </p> -->
+          <p>작성 시간 : {{ new Date(article.created_at).toLocaleString() }} </p>
+          <p>수정 시간 : {{ new Date(article.updated_at).toLocaleString() }}</p>
           <br>
         </li>
       </ul>
