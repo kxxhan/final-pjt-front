@@ -1,7 +1,7 @@
 <template>
   <!-- Article 생성하는 로직을 짜주자. -->
   <div>
-    <h1>Article</h1>
+    <h1>ArticleCreate</h1>
     <input type="text" v-model="query" @input="getAccordedMovie()" placeholder="검색">
     <div v-for="accordedmovie in accordedmovies" :key="accordedmovie.id">
       <ul>
@@ -34,7 +34,7 @@ import axios from 'axios'
 const SERVER_URL = process.env.VUE_APP_SERVER_URL
 
 export default {
-  name: 'Article',
+  name: 'ArticleCreate',
   data: function () {
     return {
       movies: this.$store.state.movies,

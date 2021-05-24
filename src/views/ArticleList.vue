@@ -1,7 +1,7 @@
 <template>
   <div class="board">
     <h1>게시판 TEST</h1>
-    <router-link :to="{ name : 'Article' }"> 게시글 작성 </router-link>
+    <router-link :to="{ name : 'ArticleCreate' }"> 게시글 작성 </router-link>
   </div>
 </template>
 <script>
@@ -12,7 +12,7 @@
 // import axios from 'axios'
 
 export default {
-  name: 'Board',
+  name: 'ArticleList',
   data: function () {
     return {}
   },

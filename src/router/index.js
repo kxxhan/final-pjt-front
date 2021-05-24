@@ -4,8 +4,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import MovieDetail from '../views/MovieDetail.vue'
 
-import Board from '@/views/Board.vue'
-import Article from '@/views/Article.vue'
+import ArticleList from '@/views/ArticleList.vue'
+import ArticleCreate from '@/views/ArticleCreate.vue'
 import ArticleDetail from '@/views/ArticleDetail.vue'
 
 import Signup from '@/views/accounts/Signup'
@@ -39,13 +39,13 @@ const routes = [
   },
   {
     path: '/board',
-    name: 'Board',
-    component: Board
+    name: 'ArticleList',
+    component: ArticleList
   },
   {
     path: '/article',
-    name: 'Article',
-    component: Article
+    name: 'ArticleCreate',
+    component: ArticleCreate
   },
   {
     path: '/article/:articleId',
