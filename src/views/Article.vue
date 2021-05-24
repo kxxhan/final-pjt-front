@@ -2,16 +2,16 @@
   <!-- Article 생성하는 로직을 짜주자. -->
   <div>
     <h1>Article</h1>
-    <input type="text" v-model="query" @input="getAccordedMovie(query)" placeholder="검색">
-    <div v-for="accordemovie in accordedmovies" :key="accordemovie.id">
+    <input type="text" v-model="query" @input="getAccordedMovie()" placeholder="검색">
+    <div v-for="accordedmovie in accordedmovies" :key="accordedmovie.id">
       <ul>
         <!-- 클릭 이벤트 발생시 setMovieInfo 함수 호출 => 선택된 영화의 제목과 id를 data에 저장 -->
-        <li @click="setMovieInfo(accordemovie.title, accordemovie.id)"> {{ accordemovie.title }}</li>
+        <li @click="setMovieInfo(accordedmovie.title, accordedmovie.id)"> {{ accordedmovie.title }}</li>
       </ul>
     </div>
     <div>
     <h3>영화제목 : {{ this.movietitle }}</h3>
-    <input type="text" v-model="credentials.articletitle">
+    <input type="text" v-model="credentials.title">
     <br>
     <input type="text" v-model="credentials.content">
     <br>
@@ -41,20 +41,23 @@ export default {
       accordedmovies: [],
       query: '',
       movietitle: '',
-      selectedmovieId: '',
       credentials : {
-        articletitle: '',
+        title: '',
         content: '',
+        // 선택된 movie의 id
+        movie: '',
+        // user id
+        user: '',
       },
       // article에 넣어줄거는 담아서 보내주는게 나을 수도 있겠다.
     }
   },
   methods: {
-    getAccordedMovie: function (query) {
+    getAccordedMovie: function () {
       this.accordedmovies = []
       for (let i = 0; i < this.movies.length; i++) {
         // movies에 담긴 movie 중 title이 query를 포함하고 있는 경우를 모든공백을 제거하고 확인
-        if (this.movies[i].title.replace(/(\s*)/g, "").includes(query.replace(/(\s*)/g, ""))) {
+        if (this.movies[i].title.replace(/(\s*)/g, "").includes(this.query.replace(/(\s*)/g, ""))) {
           //accordedmovies에 넣어준다.
           this.accordedmovies.push(this.movies[i])
         }
@@ -62,14 +65,17 @@ export default {
     },
     setMovieInfo: function (title, id) {
       this.movietitle = title
-      this.selectedmovieId = id
+      this.credentials.movie = id
     },
     createArticle: function () {
       axios({
         method: 'POST',
-        url: `${SERVER_URL}/articles/movie/${this.selectedmovieId}/`,
+        url: `${SERVER_URL}/articles/movie/${this.credentials.movie}/`,
+        data: this.credentials
       }).then((res) => {
         console.log(res)
+      }).catch((err) => {
+        console.log(err.response)
       })
     }
   }
