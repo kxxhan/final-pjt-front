@@ -3,12 +3,14 @@
   <div>
     <h1>ArticleCreate</h1>
     <input type="text" v-model="query" @input="getAccordedMovie()" placeholder="검색">
-    <div v-for="accordedmovie in accordedmovies" :key="accordedmovie.id">
-      <ul>
-        <!-- 클릭 이벤트 발생시 setMovieInfo 함수 호출 => 선택된 영화의 제목과 id를 data에 저장 -->
-        <li @click="setMovieInfo(accordedmovie.title, accordedmovie.id)"> {{ accordedmovie.title }}</li>
-      </ul>
-    </div>
+    <section v-if="query">
+      <div  v-for="accordedmovie in accordedmovies" :key="accordedmovie.id">
+        <ul>
+          <!-- 클릭 이벤트 발생시 setMovieInfo 함수 호출 => 선택된 영화의 제목과 id를 data에 저장 -->
+          <li @click="setMovieInfo(accordedmovie.title, accordedmovie.id)"> {{ accordedmovie.title }}</li>
+        </ul>
+      </div>
+    </section>
     <div>
     <h3>영화제목 : {{ this.movietitle }}</h3>
     <input type="text" v-model="credentials.title">
@@ -66,6 +68,7 @@ export default {
     setMovieInfo: function (title, id) {
       this.movietitle = title
       this.credentials.movie = id
+      this.query = ''
     },
     createArticle: function () {
       axios({

@@ -6,8 +6,10 @@
       <ul>
         <li v-for="article in articleList" :key="article.id">
           <h2>영화이름 : {{ article.movie }}</h2>
-          <h3>글쓴이 : {{ article.user }}</h3>
-          <h3>리뷰제목 : {{ article.title }}</h3>
+          <h3>글쓴이 : {{ article.user.username }}</h3>
+          <h3>리뷰제목 :           
+            <router-link :to="{ path : `/board/${article.user.id}` }">{{ article.title }}</router-link>
+          </h3>
           <h4>리뷰내용 : {{ article.content }}</h4>
           <br>
         </li>

@@ -4,7 +4,7 @@
       <span v-if="isLogin">
         <router-link :to="{ name : 'Main' }">Main</router-link> |
         <router-link :to="{ name : 'ArticleList' }">Board</router-link> |
-        <router-link to="/article/6">임시 Article</router-link> |
+        <router-link to="/board/6">임시 Article</router-link> |
         <router-link :to="{ name : 'Recommend' }">Recommend</router-link> |
         <router-link to="#" @click.native="logout">Logout</router-link>
       </span>

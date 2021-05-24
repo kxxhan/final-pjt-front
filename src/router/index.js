@@ -73,7 +73,7 @@ const routes = [
     component: ArticleCreate
   },
   {
-    path: '/article/:articleId',
+    path: '/board/:articleId',
     name: 'ArticleDetail',
     component: ArticleDetail
   },
