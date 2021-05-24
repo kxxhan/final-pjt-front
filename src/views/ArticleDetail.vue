@@ -10,8 +10,10 @@
 
     <!-- 유저가 일치하는지 여부가 중요할 것 같다. -->
     <!-- 작성자 본인만 수정, 삭제 할 수 있다. -->
-    <button>리뷰 수정</button>
-    <button>리뷰 삭제</button>
+    <div v-if="isAuthor">
+      <button>리뷰 수정</button>
+      <button>리뷰 삭제</button>
+    </div>
     <hr>
     <p>이전글 : 모시기모시기</p>  
     <p>다음글 : 모시기모시기</p>  
@@ -28,7 +30,11 @@ export default {
   data : function () {
     return {
       isAuthor: false,
-      article: {}
+       article: {
+        // 아래 부분 없을때 TypeError가 발생하는 이유는? 렌더링은 잘 됨.
+        movie : {},
+        user : {}
+      },
     }
   },
   components: {
