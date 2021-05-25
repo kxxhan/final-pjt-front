@@ -31,18 +31,24 @@
 <script>
 export default {
   name: 'Main',
-  created: async function () {
-    if (this.$store.state.movies.length)  return 
-    const result = this.$store.dispatch('getMovies')
-      const response = this.$store.dispatch('getRecommends')
-    await result
-    await response
-    if (!result) {
+  methods : {
+    getMovies : async function () {
+      if (this.$store.state.movies.length)  return 
+      const result = await this.$store.dispatch('getMovies')
+      if (!result) {
       alert('영화를 서버에서 받아오지 못했습니다.')
+      }
+    },
+    getRecommends : async function () {
+      const response = await this.$store.dispatch('getRecommends')
+      if (!response) {
+        alert('추천 영화를 서버에서 받아오지 못했습니다.')
+      }
     }
-    if (!response) {
-      alert('추천 영화를 서버에서 받아오지 못했습니다.')
-    }
+  },
+  created: function () {
+    this.getMovies()
+    this.getRecommends()
   },
   computed : {
     movies : function () {

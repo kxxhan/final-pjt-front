@@ -32,7 +32,7 @@
 
 [ ✔ ] 첫 접속시 영화 5개 고르는 추천페이지
 
-[  ] 초기 추천 완료. 이제 로그인 시 is_recommended에 따라 추천을 받을지 안받을지 구현하고, is_recommended 튕겨내기 작성 + is_recommended가 false일 시 다른 페이지에 접근할 수 없도록 설정
+[  ] 로그인 시 is_recommended가 false라면 Recommend 렌더시켰지만, 고르고 난 뒤 Main으로 갈 때 바로 목록을 받아오지는 못하는 상황. 
 
 [  ] 관리자 여부 작성해서 접속 버튼 작성
 
