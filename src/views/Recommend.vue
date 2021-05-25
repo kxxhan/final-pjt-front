@@ -36,13 +36,19 @@ export default {
                 console.log(this.pickedList);
                 this.show = false
                 // 이제 여기에서 axios 요청으로 영화 리스트를 보내면
-                await axios({
+                const response = await axios({
                     method : 'POST',
                     url : SERVER_URL + '/movies/recommend/',
                     data : this.pickedList,
                 }).catch((err)=>{
                     console.log(err.response);
                 })
+
+                if (response) {
+                    console.log(response.data);
+                    this.$store.commit('SET_IS_RECOMMENDED')
+                    this.$router.push({ name : 'Main'})
+                }
                 // 각 영화의 장르를 찾아서 이 유저의 평가에 8점을 저장한다.
                 // 그리고 main으로 push
             }

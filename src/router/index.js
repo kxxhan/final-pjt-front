@@ -66,19 +66,39 @@ const routes = [
   {
     path: '/board',
     name: 'ArticleList',
-    component: ArticleList
+    component: ArticleList,
+    beforeEnter : function (to, from, next) {
+      if (store.state.isLogin){
+        next()
+      }else{
+        next({ name : 'Login'})
+      }
+    }
   },
   {
     path: '/article',
     name: 'ArticleCreate',
-    component: ArticleCreate
+    component: ArticleCreate,
+    beforeEnter : function (to, from, next) {
+      if (store.state.isLogin){
+        next()
+      }else{
+        next({ name : 'Login'})
+      }
+    }
   },
   {
     path: '/board/:articleId',
     name: 'ArticleDetail',
-    component: ArticleDetail
+    component: ArticleDetail,
+    beforeEnter : function (to, from, next) {
+      if (store.state.isLogin){
+        next()
+      }else{
+        next({ name : 'Login'})
+      }
+    }
   },
-
   {
     path: '/signup',
     name: 'Signup',
@@ -105,6 +125,15 @@ const routes = [
     path: '/oops',
     name: 'Http404',
     component: Http404,
+    beforeEnter : function (to, from, next) {
+      if (store.state.isLogin && store.state.userData.is_recommended){
+        next()
+      }else if (!store.state.userData.is_recommended){
+        next({ name : 'Recommend' })
+      }else{
+        next({ name : 'Login'})
+      }
+    }
   },
   
 ]

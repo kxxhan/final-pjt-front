@@ -10,7 +10,12 @@ export default new Vuex.Store({
   state: {
     isLogin : false,
     movies : [],
-    recommends : {},
+    recommends : [],
+    userData : {
+      username: null,
+      email : null,
+      is_ecommended : null,
+    }
   },
   mutations: {
     LOGIN : function (state) {
@@ -20,12 +25,24 @@ export default new Vuex.Store({
       state.isLogin = false
       state.movies = []
       state.recommends = []
+      state.userData = {
+        username: null,
+        email : null,
+        is_recommended : null,
+      }
     },
     SET_MOVIES : function (state, payload) {
       state.movies = payload
     },
     SET_RECOMMENDS : function (state, payload) {
       state.recommends = payload
+    },
+    SET_USERDATA : function (state, payload) {
+      state.userData = payload
+    },
+    SET_IS_RECOMMENDED : function (state) {
+      state.userData.is_recommended = true
+      console.log(state.userData.is_recommended);
     }
   },
   actions: {
@@ -45,7 +62,27 @@ export default new Vuex.Store({
       const token = response.data.token
       localStorage.setItem('jwt', token)
       axios.defaults.headers.common['Authorization'] = `JWT ${token}`
-      router.push({ name : 'Main' })
+
+      // 토큰을 넣었으므로 요청을 보내서 유저 정보를 받아온다
+      const userResponse = await axios({
+        method: 'GET',
+        url: SERVER_URL + '/accounts/userinfo/',
+      }).catch((err)=>{
+        console.log(err.response);
+      })
+
+      if (userResponse) {
+        const userData = userResponse.data
+        console.log(userData);
+        context.commit('SET_USERDATA', userData)
+        if (userData.is_recommended) {
+          router.push({ name : 'Main' })
+        }else{
+          router.push({ name : 'Recommend' })
+        }
+      }else{
+        this.dispatch('logout')
+      }
     },
 
     logout : function name(context) {

@@ -2,10 +2,10 @@
   <div id="app">
     <div id="nav">
       <span v-if="isLogin">
-        <router-link :to="{ name : 'Main' }">Main</router-link> |
-        <router-link :to="{ name : 'ArticleList' }">Board</router-link> |
-        <router-link to="/board/6">임시 Article</router-link> |
-        <router-link :to="{ name : 'Recommend' }">Recommend</router-link> |
+        <span v-if="isRecommended">
+          <router-link :to="{ name : 'Main' }">Main</router-link> |
+          <router-link :to="{ name : 'ArticleList' }">Board</router-link> |
+        </span>
         <router-link to="#" @click.native="logout">Logout</router-link>
       </span>
       <span v-else>
@@ -30,6 +30,9 @@ export default {
   computed: { // 1. computed로 
     isLogin: function () { // store에 저장되어있는 isLogin 값을 사용할 수 있게 해준다.
       return this.$store.state.isLogin
+    },
+    isRecommended : function () {
+      return this.$store.state.userData.is_recommended
     }
   },
   created: function () {
