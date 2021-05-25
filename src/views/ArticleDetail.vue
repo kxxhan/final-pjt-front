@@ -18,6 +18,8 @@
         <button @click="updateArticle">리뷰 수정</button>
         <button @click="deleteArticle">리뷰 삭제</button>
       </div>
+      <hr>  
+      <CommentList/>
       <hr>
       <p>이전글 : 모시기모시기</p>  
       <p>다음글 : 모시기모시기</p>  
@@ -31,6 +33,7 @@
 <script>
 import axios from 'axios'
 import ArticleUpdate from '@/components/ArticleUpdate.vue'
+import CommentList from '@/components/CommentList.vue'
 const SERVER_URL = process.env.VUE_APP_SERVER_URL
 
 export default {
@@ -39,7 +42,7 @@ export default {
     return {
       isUpdate: false,
       isAuthor: false,
-       article: {
+      article: {
         // 아래 부분 없을때 TypeError가 발생하는 이유는? 렌더링은 잘 됨.
         movie : {},
         user : {}
@@ -47,7 +50,8 @@ export default {
     }
   },
   components: {
-    ArticleUpdate
+    ArticleUpdate,
+    CommentList,
   },
   methods: {
     getArticle: function () {
@@ -81,7 +85,7 @@ export default {
       }).catch( (err) => {
         console.log(err.response)
       })
-    }
+    },
   },
   created: function () {
     // console.log(this.$route.params)
