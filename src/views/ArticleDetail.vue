@@ -16,7 +16,7 @@
       <p> {{ article.content }}</p>
       <div v-if="isAuthor">
         <button @click="updateArticle">리뷰 수정</button>
-        <button>리뷰 삭제</button>
+        <button @click="deleteArticle">리뷰 삭제</button>
       </div>
       <hr>
       <p>이전글 : 모시기모시기</p>  
@@ -68,6 +68,19 @@ export default {
         this.getArticle()
       }
       this.isUpdate = !this.isUpdate
+    },
+    // Article 삭제
+    deleteArticle: function () {
+      axios({
+        method: 'delete',
+        url: `${SERVER_URL}/articles/${this.$route.params.articleId}/`
+      }).then( (res) => {
+        console.log(res)
+        alert('삭제 완료')
+        this.$router.push({ name: 'ArticleList' })
+      }).catch( (err) => {
+        console.log(err.response)
+      })
     }
   },
   created: function () {
