@@ -70,7 +70,7 @@ export default new Vuex.Store({
     getRecommends : async function (context) {
       const response = await axios({
         method: 'get',
-        url: SERVER_URL + '/movies/test/',
+        url: SERVER_URL + '/movies/recommend/',
       }).catch((err)=>{
         console.log(err.response);
       })
