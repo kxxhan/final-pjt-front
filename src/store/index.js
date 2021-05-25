@@ -62,34 +62,41 @@ export default new Vuex.Store({
       const token = response.data.token
       localStorage.setItem('jwt', token)
       axios.defaults.headers.common['Authorization'] = `JWT ${token}`
+      // 로그인 시 유저데이터 가져오는 부분
+      this.dispatch('getUserData')
+    },
 
+    logout : function(context) {
+      context.commit('LOGOUT')
+      localStorage.removeItem('jwt')
+      axios.defaults.headers.common['Authorization'] = ''
+      router.push({ name : 'Login' })
+    },
+
+    getUserData : async function (context) {
       // 토큰을 넣었으므로 요청을 보내서 유저 정보를 받아온다
-      const userResponse = await axios({
+      const response = await axios({
         method: 'GET',
         url: SERVER_URL + '/accounts/userinfo/',
       }).catch((err)=>{
         console.log(err.response);
       })
 
-      if (userResponse) {
-        const userData = userResponse.data
+      if (response) {
+        const userData = response.data
         console.log(userData);
         context.commit('SET_USERDATA', userData)
         if (userData.is_recommended) {
-          router.push({ name : 'Main' })
+          if (location.pathname !== '/main') {
+            router.push({ name : 'Main' })
+          }
+          // router.push({ name : 'Main' })
         }else{
           router.push({ name : 'Recommend' })
         }
       }else{
         this.dispatch('logout')
       }
-    },
-
-    logout : function name(context) {
-      context.commit('LOGOUT')
-      localStorage.removeItem('jwt')
-      axios.defaults.headers.common['Authorization'] = ''
-      router.push({ name : 'Login' })
     },
     
     getMovies : async function (context) {

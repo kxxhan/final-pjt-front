@@ -41,9 +41,11 @@ export default {
     if (jwt) { // 토큰이 있으면 헤더에 넣어주고, isLogin도 true로 만들어 줘야 바람직하다
       this.$store.commit('LOGIN')
       axios.defaults.headers.common['Authorization'] = `JWT ${jwt}`
-      if (location.pathname !== '/main') {
-        this.$router.push({ name : 'Main' })
-      }
+
+      this.$store.dispatch('getUserData')
+      // if (location.pathname !== '/main') {
+      //   this.$router.push({ name : 'Main' })
+      // }
     }
   }
 
