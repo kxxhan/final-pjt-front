@@ -17,27 +17,26 @@
 [ ❌ ] author 추가
 
 
-### Back-End
-
-[ ✔ ]  User 모델 작성
-
-[ ✔ ] User model에서 email을 필수로 받도록 수정
-
-[ ✔ ]  UserSerializer 작성
-
-[ ✔ ] CORS 정책 전체 허용으로 변경
-
-[ ✔ ]  JWT 설정 및 jwt토큰 발급 url 설정
-
-[ ✔ ]  signup 로직 구현
-
-
 
 ### Front-End
 
 [ ✔ ] 로그인, 회원가입 router 제작
 
-[ ❌ ] 로그인, 회원가입 기능 구현
+[ ✔ ] 로그인, 회원가입 기능 구현
+
+...
+
+[  ]  게시글 수정, 삭제
+
+[  ] 댓글 생성 삭제
+
+[  ] 첫 접속시 영화 5개 고르는 추천페이지
+
+[  ] 관리자 여부 작성해서 접속 버튼 작성
+
+[  ] 관리자페이지
+
+[  ] 꾸미기 
 
 
 
@@ -50,17 +49,4 @@
 ``vue-router``
 ``axios``
 ``lodash``
-
-
-## Back-End 서버 패키지
-
-``django ``
-``django-seed ``
-``django-cors-headers ``
-``djangorestframework ``
-``djangorestframework-jwt``
-
-
-
-
 
