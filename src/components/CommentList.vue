@@ -1,23 +1,24 @@
 <template>
   <div>
     <small>댓글</small>
-    <CommentItem 
+    <CommentListItem 
     v-for="comment in commentList" :key="comment.id"
     :comment="comment"
+    @deleted="getComment"
     />
     <input type="text" v-model="commentInput.content">
     <button @click="createComment">등록</button>
   </div>
 </template>
 <script>
-import CommentItem from '@/components/CommentItem.vue'
-const SERVER_URL = process.env.VUE_APP_SERVER_URL
+import CommentListItem from '@/components/CommentListItem.vue'
 import axios from 'axios'
+const SERVER_URL = process.env.VUE_APP_SERVER_URL
 
 export default {
   name: 'CommentList',
   components: {
-    CommentItem
+    CommentListItem
   },
   data: function () {
     return {
@@ -47,8 +48,11 @@ export default {
         data: this.commentInput
       }).then( (res) => {
         console.log(res.data)
+        if (res.status === 200) {
+          this.getComment()
+        }
       }).catch( (err) => {
-        console.log(err)
+        console.log(err.response)
       })
     }
   },

@@ -55,6 +55,7 @@ export default new Vuex.Store({
       }).catch((err)=>{
         // axios 요청에 실패할 경우 undefined를 리턴하므로 login의 if token에 걸린다.
         alert('로그인 정보를 확인해 주세요\n' + err.response)
+        console.log(err.response)
       })
       if (!response) return
       context.commit('LOGIN') // 2. isLogin true로 변경하기
