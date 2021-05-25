@@ -65,7 +65,7 @@ export default {
       }).then((res) => {
         console.log(res)
         if (res.status ===200){
-          this.$router.push({ name : 'Board' })
+          this.$router.push({ path: `/board/${res.data.id}` })
         }
       }).catch((err) => {
         console.log(err.response)
