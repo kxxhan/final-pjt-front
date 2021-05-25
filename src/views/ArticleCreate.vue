@@ -57,15 +57,29 @@ export default {
       this.query = ''
     },
     createArticle: function () {
+      if(!this.isValid()) return
       axios({
         method: 'POST',
         url: `${SERVER_URL}/articles/movie/${this.credentials.movie}/`,
         data: this.credentials
       }).then((res) => {
         console.log(res)
+        if (res.status ===200){
+          this.$router.push({ name : 'Board' })
+        }
       }).catch((err) => {
         console.log(err.response)
       })
+    },
+    isValid: function () {
+      if(!this.credentials.movie){
+        alert('영화를 고르지 않았습니다')
+        return false
+      }else if(!this.credentials.title || !this.credentials.content) {
+        alert('빈 항목을 작성해 주세요')
+        return false
+      }
+      return true
     }
   },
   computed : {
