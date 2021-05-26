@@ -1,20 +1,26 @@
 <template>
-  <div>
-    <table>
-      <tr>
-        <th>Movie</th>
-        <th>Title</th>
-        <th>Name</th>
-        <th>When</th>
-      </tr>
-      <tr v-for="page in paginatedData" :key="page.id">
-        <td>{{ page.movie.title }}</td>
-        <td>
-          <router-link :to="{ path : `/board/${page.id}` }">{{ page.title }}</router-link>
-        </td>
-        <td>{{ page.user.username }}</td>
-        <td>{{ new Date(page.created_at).toLocaleString() }}</td>
-      </tr>
+  <div> 
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Movie</th>
+          <th scope="col">Title</th>
+          <th scope="col">Name</th>
+          <th scope="col">When</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="page in paginatedData" :key="page.id">
+          <th scope="row">1</th>
+          <td>{{ page.movie.title }}</td>
+          <td>
+            <router-link :to="{ path : `/board/${page.id}` }">{{ page.title }}</router-link>
+          </td>
+          <td>{{ page.user.username }}</td>
+          <td>{{ new Date(page.created_at).toLocaleString() }}</td>
+        </tr>
+      </tbody>
     </table>
     <div class="btn-cover">
       <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
@@ -71,41 +77,9 @@ export default {
       return this.articleList.slice(start,end)
     }
   },
-  created: {
+  // created: {
 
-  }
+  // }
 }
 </script>
-<style>
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-table th {
-  font-size: 1.2rem;
-}
-table tr {
-  height: 2rem;
-  text-align: center;
-  border-bottom: 1px solid #505050;
-}
-table tr:first-of-type {
-  border-top: 2px solid #404040;
-}
-table tr td {
-  padding: 1rem 0;
-  font-size: 1.1rem;
-}
-.btn-cover {
-  margin-top: 1.5rem;
-  text-align: center;
-}
-.btn-cover .page-btn {
-  width: 5rem;
-  height: 2rem;
-  letter-spacing: 0.5px;
-}
-.btn-cover .page-count {
-  padding: 0 1rem;
-}
-</style>
+
