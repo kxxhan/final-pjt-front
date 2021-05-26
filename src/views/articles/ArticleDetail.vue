@@ -25,9 +25,6 @@
       <p>다음글 : 모시기모시기</p>  
     </div>
     </div>
-
-    <!-- 유저가 일치하는지 여부가 중요할 것 같다. -->
-    <!-- 작성자 본인만 수정, 삭제 할 수 있다. -->
 </template>
 
 <script>
@@ -43,7 +40,6 @@ export default {
       isUpdate: false,
       isAuthor: false,
       article: {
-        // 아래 부분 없을때 TypeError가 발생하는 이유는? 렌더링은 잘 됨.
         movie : {},
         user : {}
       },
@@ -58,37 +54,30 @@ export default {
       axios({
         method: 'get',
         url: `${SERVER_URL}/articles/${this.$route.params.articleId}/`
-      }).then( (res) => {
+      }).then((res) => {
         this.article = res.data.article
         this.isAuthor = res.data.isAuthor
-      }).catch( (err) => {
-        console.log(err)
+      }).catch((err) => {
+        console.log(err.response)
       })
     },
-    // Article 수정
     updateArticle: function () {
-      // 바꾸고 나서 바로 보여질 수 있게?
-      if (this.isUpdate) {
-        this.getArticle()
-      }
+      if (this.isUpdate) this.getArticle()
       this.isUpdate = !this.isUpdate
     },
-    // Article 삭제
     deleteArticle: function () {
       axios({
         method: 'delete',
         url: `${SERVER_URL}/articles/${this.$route.params.articleId}/`
       }).then( (res) => {
         console.log(res)
-        alert('삭제 완료')
         this.$router.push({ name: 'ArticleList' })
-      }).catch( (err) => {
+      }).catch((err) => {
         console.log(err.response)
       })
     },
   },
   created: function () {
-    // console.log(this.$route.params)
     this.getArticle()
   }
 }

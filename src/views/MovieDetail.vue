@@ -13,8 +13,7 @@
       <hr>
     </ul>
     <!-- 영화 리뷰 글 임시 끝 -->
-
-    <!-- https://gist.github.com/Enjoywater/c6f78ab957e9f5acf3b8b6e518447326 -->
+    
     <h1>{{ movie.title }} </h1>
     <small>({{ movie.original_title }})</small>
     <p v-if="rating">
@@ -44,7 +43,6 @@
 
   </div>
 </template>
-
 
 <script>
 import axios from 'axios'
@@ -84,7 +82,7 @@ export default {
         },
       })
       .catch((err)=>{
-        console.log(err)
+        console.log(err.response)
       })
 
       if (!response) return
@@ -98,8 +96,7 @@ export default {
           movie_id : this.$route.params.movieId,
         },
       }).catch((err)=>{
-        
-        console.log(err)
+        console.log(err.response)
       })
 
       if (!response) return
@@ -113,8 +110,7 @@ export default {
       method : 'POST',
       url: SERVER_URL + `/movies/${this.$route.params.movieId}/`,
     }).catch((err)=>{
-      const status = err.response.status
-      if (status === 401){
+      if (err.response.status === 401){
         this.$store.dispatch('logout')
       }
     })

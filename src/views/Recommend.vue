@@ -26,12 +26,10 @@ export default {
     },
     methods : {
         getMovieId : async function (movieId) {
-            this.pickedList.push(
-                { 
-                    'movie' : movieId,
-                    'rating' : 8
-                }
-                )
+            this.pickedList.push({ 
+                'movie' : movieId,
+                'rating' : 8
+            })
             if  (this.pickedList.length >= 5) {
                 console.log(this.pickedList);
                 this.show = false
@@ -49,8 +47,6 @@ export default {
                     this.$store.commit('SET_IS_RECOMMENDED')
                     this.$router.push({ name : 'Main'})
                 }
-                // 각 영화의 장르를 찾아서 이 유저의 평가에 8점을 저장한다.
-                // 그리고 main으로 push
             }
             
         }

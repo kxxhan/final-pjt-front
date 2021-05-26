@@ -14,8 +14,6 @@
       </div>
       <hr>
     </section>
-
-    
     <h1>TMDB TEST</h1>
     <section class='d-flex flex-row'>
       <div  v-for='movie in movies' :key='movie.id'>

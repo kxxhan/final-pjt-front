@@ -43,9 +43,6 @@ export default {
       axios.defaults.headers.common['Authorization'] = `JWT ${jwt}`
 
       this.$store.dispatch('getUserData')
-      // if (location.pathname !== '/main') {
-      //   this.$router.push({ name : 'Main' })
-      // }
     }
   }
 

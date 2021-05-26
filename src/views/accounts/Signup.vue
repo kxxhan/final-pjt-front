@@ -27,8 +27,6 @@
 
 <script>
 import axios from 'axios'
-
-// 환경변수에 수정이 일어났기 때문에 서버 껏다 켜야 함
 const SERVER_URL = process.env.VUE_APP_SERVER_URL
 
 export default {
@@ -65,8 +63,6 @@ export default {
           this.invalidMessage[key] = data[key][0]
         }
       })
-
-      
       if (!response) return
 
       // 3. 회원 가입 성공 시 로그인 진행

@@ -7,9 +7,9 @@ import Http404 from '@/views/Http404.vue'
 import Recommend from '@/views/Recommend.vue'
 import MovieDetail from '@/views/MovieDetail.vue'
 
-import ArticleList from '@/views/ArticleList.vue'
-import ArticleCreate from '@/views/ArticleCreate.vue'
-import ArticleDetail from '@/views/ArticleDetail.vue'
+import ArticleList from '@/views/articles/ArticleList.vue'
+import ArticleCreate from '@/views/articles/ArticleCreate.vue'
+import ArticleDetail from '@/views/articles/ArticleDetail.vue'
 
 import Signup from '@/views/accounts/Signup'
 import Login from '@/views/accounts/Login'

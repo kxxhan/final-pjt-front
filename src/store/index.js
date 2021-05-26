@@ -91,7 +91,6 @@ export default new Vuex.Store({
           if (location.pathname !== '/main') {
             router.push({ name : 'Main' })
           }
-          // router.push({ name : 'Main' })
         }else{
           router.push({ name : 'Recommend' })
         }
