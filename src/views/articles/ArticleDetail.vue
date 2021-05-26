@@ -29,8 +29,8 @@
 
 <script>
 import axios from 'axios'
-import ArticleUpdate from '@/components/ArticleUpdate.vue'
-import CommentList from '@/components/CommentList.vue'
+import ArticleUpdate from '@/components/articles/ArticleUpdate.vue'
+import CommentList from '@/components/comments/CommentList.vue'
 const SERVER_URL = process.env.VUE_APP_SERVER_URL
 
 export default {

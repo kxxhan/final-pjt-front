@@ -3,7 +3,7 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">#</th>
+          <th scope="col">No.</th>
           <th scope="col">Movie</th>
           <th scope="col">Title</th>
           <th scope="col">Name</th>
@@ -11,35 +11,32 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="page in paginatedData" :key="page.id">
-          <th scope="row">1</th>
-          <td>{{ page.movie.title }}</td>
-          <td>
-            <router-link :to="{ path : `/board/${page.id}` }">{{ page.title }}</router-link>
-          </td>
-          <td>{{ page.user.username }}</td>
-          <td>{{ new Date(page.created_at).toLocaleString() }}</td>
-        </tr>
+        <ArticleListItem 
+        v-for="page in paginatedData" :key="page.id"
+        :page="page"
+        />
       </tbody>
     </table>
     <div class="btn-cover">
-      <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
-        이전
-      </button>
-      <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }} 페이지</span>
-      <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn">
-        다음
-      </button>
+        <ul class="pagination">
+          <li class="page-item page-link" @click="prevPage">Previous</li>
+          <li class="page-item page-link" v-for="i in pageCount" :key="i" @click="setPageNum(i-1)">{{i}}</li>
+          <li class="page-item page-link" @click="nextPage">Next</li>
+        </ul>
     </div>
   </div>
 </template>
 <script>
+import ArticleListItem from '@/components/articles/ArticleListItem.vue'
 export default {
   name: 'ArticleList',
   data: function () {
     return {
       pageNum: 0,
     }
+  },
+  components: {
+    ArticleListItem
   },
   props: {
     articleList: {
@@ -54,10 +51,17 @@ export default {
   },
   methods: {
     nextPage: function () {
+      if (this.pageNum >= this.pageCount - 1) return
       this.pageNum += 1
     },
     prevPage: function () {
+      if (this.pageNum === 0) return
       this.pageNum -= 1
+    },
+    setPageNum: function (i) {
+      console.log(this.pageCount)
+      console.log(i)
+      this.pageNum = i
     }
   },
   computed: {
@@ -75,7 +79,16 @@ export default {
       const end = start + this.pageSize
       
       return this.articleList.slice(start,end)
+    },
+    disAbled: function () {
+      // if (this.pageNum === 0 || this.pageNum >= this.pageCount - 1) {
+      //   return true
+      // } else {
+      //   return false
+      // }
+      return true
     }
+
   },
   // created: {
 
