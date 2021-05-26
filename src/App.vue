@@ -14,7 +14,6 @@
         <router-link :to="{ name : 'Login' }">Login</router-link> |
         <router-link :to="{ name : 'Signup' }">Signup</router-link>
       </span>
-
     </div>
     <router-view/>
   </div>
@@ -58,6 +57,10 @@ export default {
 </script>
 
 <style>
+html, body, #app {
+  height : 100%;
+}
+
 #app {
   /* 구글폰트 */
   font-family: 'Noto Sans KR', sans-serif;
@@ -79,13 +82,18 @@ export default {
   color: #1f1f1f;
 }
 
-#nav a:hover, a:hover {
+#nav a:hover, a:hover  {
   transition: 0.25s;
-  color: #ea5249;
+  color: #ea5249 ;
 }
 
 #nav a.router-link-exact-active {
   color: #ea5249;
+}
+
+a {
+  text-decoration: none;
+  color : #1f1f1f;
 }
 
 .btn {
@@ -93,14 +101,32 @@ export default {
   color: #ffffff;
 }
 
-.btn:hover {
+.a-to-btn {
+  background-color: #ea5249 ;
+  color: #ffffff !important;
+  display: inline-block;
+  font-weight: 400 !important;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  border-radius: .25rem;
+}
+
+.btn:hover, .a-to-btn:hover {
   background-color: #ffffff;
-  color: #ea5249;
+  color: #ea5249 !important;
   border : 1px solid #ea5249;
 }
 
-a {
-  text-decoration: none;
-  color : #1f1f1f;
-}
+
+
 </style>
+    

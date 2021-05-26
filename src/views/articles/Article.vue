@@ -3,7 +3,7 @@
     <h1>Review Board</h1>
     <ArticleList :articleList="articleList"/>
 
-    <router-link class='btn' :to="{ name : 'ArticleCreate' }"> 
+    <router-link class='a-to-btn' :to="{ name : 'ArticleCreate' }"> 
     게시글 작성
     </router-link>
   </div>
@@ -39,7 +39,7 @@ export default {
 </script>
 
 <style scoped>
-.btn {
+.a-to-btn {
   display: block;
   margin-left: auto;
   width : 150px;

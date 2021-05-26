@@ -1,13 +1,16 @@
 <template>
   <div>
-    <small>댓글</small>
+    <p class='fs-3'>댓글</p>
+    <p class='d-flex justify-content-end mb-4'>
+      <input class='mx-4 w-25' type="text" v-model="commentInput.content">
+      <button class='btn' @click="createComment">등록</button>
+    </p>
     <CommentListItem 
     v-for="comment in commentList" :key="comment.id"
     :comment="comment"
     @deleted="getComment"
     />
-    <input type="text" v-model="commentInput.content">
-    <button @click="createComment">등록</button>
+    <br>
   </div>
 </template>
 <script>

@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1>ArticleCreate</h1>
-    <h3>{{ this.movieTitle }}</h3>
+    <br>
+    <h3 v-if='movieTitle'>🎬 {{ movieTitle }}</h3>
     <form class="row g-3 form"  @submit.prevent='createArticle'>
       <div class="mb-3 row">
         <label for="movie" class="col-sm-2 col-form-label">Movie</label>
@@ -29,7 +30,9 @@
           <textarea type="text" class="form-control" id="content" v-model="credentials.content" placeholder="Content"></textarea>
         </div>
       </div>
-      <button class="btn" type="submit">저장</button>
+      <p class='d-flex justify-content-end pe-3'>
+      <button class="btn me-4" type="submit">저장</button>
+      </p>
     </form>
   </div>
 </template>
@@ -108,11 +111,6 @@ li {
   height: 300px;
 }
 
-.btn {
-  display: block;
-  margin : 20px auto;
-  width : 300px;
-}
 h1, h3 {
   margin : 10px auto;
 }
