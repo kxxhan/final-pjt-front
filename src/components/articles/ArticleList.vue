@@ -17,11 +17,17 @@
         />
       </tbody>
     </table>
-    <div class="btn-cover">
+    <div class="page">
         <ul class="pagination">
-          <li class="page-item page-link" @click="prevPage">Previous</li>
-          <li class="page-item page-link" v-for="i in pageCount" :key="i" @click="setPageNum(i-1)">{{i}}</li>
-          <li class="page-item page-link" @click="nextPage">Next</li>
+          <li class="page-item" :class="{ disabled : !pageNum }" @click="prevPage">
+            <a href="#" class="page-link">Prev</a>
+          </li>
+          <li class="page-item" :class="{ active : i-1 === pageNum }" v-for="i in pageCount" :key="i" @click="setPageNum(i-1)">
+            <a href="#" class="page-link">{{i}}</a>
+          </li>
+          <li class="page-item" :class="{ disabled : pageNum === pageCount - 1 }" @click="nextPage">
+            <a href="#" class="page-link">Next</a>
+          </li>
         </ul>
     </div>
   </div>
@@ -51,16 +57,12 @@ export default {
   },
   methods: {
     nextPage: function () {
-      if (this.pageNum >= this.pageCount - 1) return
-      this.pageNum += 1
+        this.pageNum += 1
     },
     prevPage: function () {
-      if (this.pageNum === 0) return
-      this.pageNum -= 1
+        this.pageNum -= 1
     },
     setPageNum: function (i) {
-      console.log(this.pageCount)
-      console.log(i)
       this.pageNum = i
     }
   },
@@ -80,19 +82,56 @@ export default {
       
       return this.articleList.slice(start,end)
     },
-    disAbled: function () {
-      // if (this.pageNum === 0 || this.pageNum >= this.pageCount - 1) {
-      //   return true
-      // } else {
-      //   return false
-      // }
-      return true
-    }
-
+    // isCurrentPage: function () {
+    //   const pageArr = []
+    //   for(let i = 0; i < this.pageCount; i++) {
+    //     pageArr.push(false)
+    //   }
+    //   pageArr[this.pageNum] = true
+    //   return pageArr[]
+    // }
   },
   // created: {
 
   // }
 }
 </script>
+<style scoped>
+  .page {
+    text-align: center;
+    width: 100%;
+  }
+  .pagination {
+    display: inline-block;
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+  .pagination li {
+    display: inline;
+    text-align: center;
+  }
+  /* 효과가 딱히 없음 */
+  .pagination a{
+    display: inline;
+    text-align: center;
+    float: left;
+    display: block;
+    font-size: 14px;
+    text-decoration: none;
+    background-color: #ffffff;
+    color: #212529;
+  }
 
+  .page-item.active .page-link {
+    cursor: pointer;
+    background-color: #ea5249!important;
+    border-color: #ea5249;
+    color: #ffffff;
+  }
+  .page-item.active a:hover {
+    color: #ea5249;
+    background-color: #ffffff!important;
+    cursor: pointer;
+  }
+</style>
