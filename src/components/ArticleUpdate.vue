@@ -52,7 +52,6 @@ export default {
         // router에 push 해주려고 했으나 같은 url에 있기때문에 nono emit 이벤트를 해줘야 할 듯.
         // emit으로 update false로 바꿔주자.
         if (res.status === 200) {
-          alert('수정완료')
           this.$emit('updated')
         }
       }).catch ( (err) => {
