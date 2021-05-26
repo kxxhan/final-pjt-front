@@ -1,8 +1,11 @@
 <template>
   <div class="board">
     <h1>Review Board</h1>
-    <router-link :to="{ name : 'ArticleCreate' }"> 게시글 작성 </router-link>
     <ArticleList :articleList="articleList"/>
+
+    <router-link :to="{ name : 'ArticleCreate' }"> 
+      <button class='btn'>게시글 작성 </button>
+    </router-link>
   </div>
 </template>
 <script>
@@ -48,4 +51,10 @@ li {
   color: #1f1f1f;
   background-color: #ffffff;
 }
+.btn {
+  display : block;
+  margin-left: auto;
+}
+
+
 </style>

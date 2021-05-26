@@ -15,6 +15,7 @@ export default new Vuex.Store({
       username: null,
       email : null,
       is_recommended : null,
+      is_superuser : null,
     }
   },
   mutations: {

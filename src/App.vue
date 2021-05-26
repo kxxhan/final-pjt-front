@@ -6,8 +6,8 @@
           <router-link :to="{ name : 'Main' }">Main</router-link> |
           <router-link :to="{ name : 'Article' }">Board</router-link> |
         </span>
-        <router-link to="#" @click.native="logout">Logout</router-link> 
-        <router-link to="#" v-if="isSuperUser" @click.native="goAdmin">| Admin</router-link> 
+        <router-link to="#" @click.native="logout">Logout</router-link> | 
+        <router-link to="#" v-if="isSuperUser" @click.native="goAdmin">Admin</router-link> 
       </span>
       <span v-else>
         <router-link :to="{ name : 'Home' }">Home</router-link> |
@@ -79,6 +79,11 @@ export default {
   color: #1f1f1f;
 }
 
+#nav a:hover, a:hover {
+  transition: 0.25s;
+  color: #ea5249;
+}
+
 #nav a.router-link-exact-active {
   color: #ea5249;
 }
@@ -86,5 +91,16 @@ export default {
 .btn {
   background-color: #ea5249 ;
   color: #ffffff;
+}
+
+.btn:hover {
+  background-color: #ffffff;
+  color: #ea5249;
+  border : 1px solid #ea5249;
+}
+
+a {
+  text-decoration: none;
+  color : #1f1f1f;
 }
 </style>
