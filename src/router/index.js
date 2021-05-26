@@ -7,7 +7,7 @@ import Http404 from '@/views/Http404.vue'
 import Recommend from '@/views/Recommend.vue'
 import MovieDetail from '@/views/MovieDetail.vue'
 
-import ArticleList from '@/views/articles/ArticleList.vue'
+import Article from '@/views/articles/Article.vue'
 import ArticleCreate from '@/views/articles/ArticleCreate.vue'
 import ArticleDetail from '@/views/articles/ArticleDetail.vue'
 
@@ -65,8 +65,8 @@ const routes = [
   },
   {
     path: '/board',
-    name: 'ArticleList',
-    component: ArticleList,
+    name: 'Article',
+    component: Article,
     beforeEnter : function (to, from, next) {
       if (store.state.isLogin){
         next()

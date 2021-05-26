@@ -4,10 +4,10 @@
       <span v-if="isLogin">
         <span v-if="isRecommended">
           <router-link :to="{ name : 'Main' }">Main</router-link> |
-          <router-link :to="{ name : 'ArticleList' }">Board</router-link> |
+          <router-link :to="{ name : 'Article' }">Board</router-link> |
         </span>
-        <router-link to="#" @click.native="logout">Logout</router-link> |
-        <router-link to="#" v-if="isSuperUser" @click.native="goAdmin">Admin</router-link> 
+        <router-link to="#" @click.native="logout">Logout</router-link> 
+        <router-link to="#" v-if="isSuperUser" @click.native="goAdmin">| Admin</router-link> 
       </span>
       <span v-else>
         <router-link :to="{ name : 'Home' }">Home</router-link> |
@@ -59,7 +59,10 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* 구글폰트 */
+  font-family: 'Noto Sans KR', sans-serif;
+  /* Vue 기본 */
+  /* font-family: Avenir, Helvetica, Arial, sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
