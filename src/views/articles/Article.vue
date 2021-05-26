@@ -2,7 +2,8 @@
   <div class="board">
     <h1>게시판 TEST</h1>
     <router-link :to="{ name : 'ArticleCreate' }"> 게시글 작성 </router-link>
-    <ul class="list-group">
+    <ArticleList :articleList="articleList"/>
+    <!-- <ul class="list-group">
       <li class="list-group-item" v-for="article in articleList" :key="article.id">
         <b>영화이름 : {{ article.movie.title }}</b> |
         <b>글쓴이 : {{ article.user.username }}</b>
@@ -12,11 +13,13 @@
         <b>작성 시간 : {{ new Date(article.created_at).toLocaleString() }} | 수정 시간 : {{ new Date(article.updated_at).toLocaleString() }}</b>
         <br>
       </li>
-    </ul>
+    </ul> -->
   </div>
 </template>
 <script>
 import axios from 'axios'
+import ArticleList from '@/components/ArticleList.vue'
+
 const SERVER_URL = process.env.VUE_APP_SERVER_URL
 
 export default {
@@ -25,6 +28,9 @@ export default {
     return {
       articleList: [],
     }
+  },
+  components: {
+    ArticleList
   },
   created: function () {
     axios({
