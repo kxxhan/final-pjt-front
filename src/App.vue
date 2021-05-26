@@ -6,16 +6,15 @@
           <router-link :to="{ name : 'Main' }">Main</router-link> |
           <router-link :to="{ name : 'ArticleList' }">Board</router-link> |
         </span>
-        <router-link to="#" @click.native="logout">Logout</router-link>
+        <router-link to="#" @click.native="logout">Logout</router-link> |
+        <router-link to="#" v-if="isSuperUser" @click.native="goAdmin">Admin</router-link> 
       </span>
       <span v-else>
         <router-link :to="{ name : 'Home' }">Home</router-link> |
         <router-link :to="{ name : 'Login' }">Login</router-link> |
         <router-link :to="{ name : 'Signup' }">Signup</router-link>
       </span>
-      <span v-if="isSuperUser" @click="goAdmin">
-        관리자페이지 고
-      </span>
+
     </div>
     <router-view/>
   </div>
