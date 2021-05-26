@@ -11,7 +11,7 @@
   </div>
 </template>
 <script>
-import CommentListItem from '@/components/CommentListItem.vue'
+import CommentListItem from '@/components/comments/CommentListItem.vue'
 import axios from 'axios'
 const SERVER_URL = process.env.VUE_APP_SERVER_URL
 
