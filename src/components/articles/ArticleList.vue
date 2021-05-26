@@ -80,19 +80,8 @@ export default {
       
       return this.articleList.slice(start,end)
     },
-    disAbled: function () {
-      // if (this.pageNum === 0 || this.pageNum >= this.pageCount - 1) {
-      //   return true
-      // } else {
-      //   return false
-      // }
-      return true
-    }
 
   },
-  // created: {
-
-  // }
 }
 </script>
 

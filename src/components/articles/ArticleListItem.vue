@@ -27,3 +27,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+tr:hover{
+  transition: 0.4s;
+  background-color: #ea5249 ;
+  color: #ffffff;
+}
+</style>

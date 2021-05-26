@@ -2,7 +2,7 @@
   <div>
     <h1>ArticleCreate</h1>
     <h3>{{ this.movieTitle }}</h3>
-    <form class="row g-3 form"  @submit.prevent=''>
+    <form class="row g-3 form"  @submit.prevent='createArticle'>
       <div class="mb-3 row">
         <label for="movie" class="col-sm-2 col-form-label">Movie</label>
         <div class="col-sm-10">
@@ -29,7 +29,7 @@
           <textarea type="text" class="form-control" id="content" v-model="credentials.content" placeholder="Content"></textarea>
         </div>
       </div>
-      <button @submit="createArticle" class="btn" type="submit">저장</button>
+      <button class="btn" type="submit">저장</button>
     </form>
   </div>
 </template>
