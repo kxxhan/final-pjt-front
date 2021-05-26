@@ -1,7 +1,6 @@
 <template>
   <div class="board">
     <h1>게시판 TEST</h1>
-    <router-link :to="{ name : 'ArticleCreate' }"> 게시글 작성 </router-link>
     <ArticleList :articleList="articleList"/>
     <!-- <ul class="list-group">
       <li class="list-group-item" v-for="article in articleList" :key="article.id">
@@ -14,6 +13,9 @@
         <br>
       </li>
     </ul> -->
+    <router-link :to="{ name : 'ArticleCreate' }"> 
+      <button class='btn'>게시글 작성 </button>
+    </router-link>
   </div>
 </template>
 <script>
@@ -59,4 +61,10 @@ li {
   color: #1f1f1f;
   background-color: #ffffff;
 }
+.btn {
+  display : block;
+  margin-left: auto;
+}
+
+
 </style>
