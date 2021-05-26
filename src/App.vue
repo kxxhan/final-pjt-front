@@ -13,6 +13,9 @@
         <router-link :to="{ name : 'Login' }">Login</router-link> |
         <router-link :to="{ name : 'Signup' }">Signup</router-link>
       </span>
+      <span v-if="isSuperUser" @click="goAdmin">
+        관리자페이지 고
+      </span>
     </div>
     <router-view/>
   </div>
@@ -25,6 +28,9 @@ export default {
   methods: {
     logout: async function () {
       this.$store.dispatch('logout')
+    },
+    goAdmin : function () {
+      location.href='http://127.0.0.1:8000/admin'
     }
   },
   computed: { // 1. computed로 
@@ -33,6 +39,9 @@ export default {
     },
     isRecommended : function () {
       return this.$store.state.userData.is_recommended
+    },
+    isSuperUser : function () {
+      return this.$store.state.userData.is_superuser
     }
   },
   created: function () {

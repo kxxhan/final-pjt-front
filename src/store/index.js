@@ -29,6 +29,7 @@ export default new Vuex.Store({
         username: null,
         email : null,
         is_recommended : null,
+        is_superuser : null,
       }
     },
     SET_MOVIES : function (state, payload) {
