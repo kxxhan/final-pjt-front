@@ -1,35 +1,27 @@
 <template>
   <div>
-    <div v-if="isUpdate">
-      <ArticleUpdate
-        :isUpdate="isUpdate"
-        :article="article"
-        @updated="updateArticle"
-      />
-    </div>
+    <ArticleUpdate
+    v-if="isUpdate"
+      :isUpdate="isUpdate"
+      :article="article"
+      @updated="updateArticle"
+    />
     <div v-else>
-      <h1>{{ article.movie.title }}에 대한 리뷰</h1>
-      <small>글 번호 : {{ article.id }}</small>
-      <h2>'{{ article.user.username }}'님의 리뷰 :  {{ article.title }}</h2>
-      <small>작성일 : {{ new Date(article.created_at).toLocaleString() }} | 수정일 : {{ new Date(article.updated_at).toLocaleString() }}</small>
+      <ArticleContent :article='article'/>
+      <p v-if="isAuthor" class="d-flex justify-content-end pe-3">
+        <button class='btn' @click="updateArticle">리뷰 수정</button>
+        <button class='btn' @click="deleteArticle">리뷰 삭제</button>
+      </p>
       <hr>
-      <p> {{ article.content }}</p>
-      <div v-if="isAuthor">
-        <button @click="updateArticle">리뷰 수정</button>
-        <button @click="deleteArticle">리뷰 삭제</button>
-      </div>
-      <hr>  
       <CommentList/>
-      <hr>
-      <p>이전글 : 모시기모시기</p>  
-      <p>다음글 : 모시기모시기</p>  
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
 import axios from 'axios'
 import ArticleUpdate from '@/components/articles/ArticleUpdate.vue'
+import ArticleContent from '@/components/articles/ArticleContent.vue'
 import CommentList from '@/components/comments/CommentList.vue'
 const SERVER_URL = process.env.VUE_APP_SERVER_URL
 
@@ -47,6 +39,7 @@ export default {
   },
   components: {
     ArticleUpdate,
+    ArticleContent,
     CommentList,
   },
   methods: {
@@ -83,6 +76,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.btn {
+  margin: 0 3px;
+}
 </style>

@@ -11,7 +11,7 @@
     <div class="mb-3 row">
       <label for="password" class="col-sm-2 col-form-label">Password</label>
       <div class="col-sm-10">
-        <input type="password" class="form-control" id="password" v-model="credentials.password">
+        <input type="password" class="form-control" id="password" placeholder="Password" v-model="credentials.password">
       </div>
     </div>
     <button class="btn" type="submit">로그인</button>

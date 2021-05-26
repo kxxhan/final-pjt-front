@@ -82,18 +82,8 @@ export default {
       
       return this.articleList.slice(start,end)
     },
-    // isCurrentPage: function () {
-    //   const pageArr = []
-    //   for(let i = 0; i < this.pageCount; i++) {
-    //     pageArr.push(false)
-    //   }
-    //   pageArr[this.pageNum] = true
-    //   return pageArr[]
-    // }
-  },
-  // created: {
 
-  // }
+  },
 }
 </script>
 <style scoped>

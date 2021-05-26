@@ -1,10 +1,11 @@
 <template>
   <div>
-    <p>
-      <b>{{ comment.user.username }}</b> |
-      <span>{{ comment.content }}</span> |
-      <small>{{ new Date(comment.updated_at).toLocaleString() }}</small>
-      <button @click="deleteComment" v-if="isWriter">삭제</button>
+    <hr>
+    <p class='d-flex justify-content-start justify-content-md-start mx-auto '>
+      <b class='mx-2'>{{ comment.user.username }}</b> :
+      <span class='mx-2'>{{ comment.content }}</span>
+      <small class='pt-1'> ( {{ new Date(comment.updated_at).toLocaleString() }} )</small>
+      <button class='btn ms-auto' @click="deleteComment" v-if="isWriter">삭제</button>
     </p>
   </div>
 </template>
@@ -44,3 +45,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+small {
+  font-size : 0.7rem;
+}
+
+</style>

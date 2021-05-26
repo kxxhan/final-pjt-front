@@ -19,14 +19,14 @@
     <div class="mb-3 row">
       <label for="password" class="col-sm-2 col-form-label">Password</label>
       <div class="col-sm-10">
-        <input type="password" class="form-control" id="password" v-model="credentials.password">
+        <input type="password" class="form-control" id="password" placeholder="Password" v-model="credentials.password">
         <span v-if="invalidMessage.password">{{ invalidMessage.password }} </span>
       </div>
     </div>
     <div class="mb-3 row">
       <label for="password-confirm" class="col-sm-2 col-form-label">Password Confirm</label>
       <div class="col-sm-10">
-        <input type="password" class="form-control" id="password-confirm" v-model="credentials.passwordConfirm">
+        <input type="password" class="form-control" id="password-confirm" placeholder="Password Confirm" v-model="credentials.passwordConfirm">
         <span v-if="invalidMessage.passwordConfirm">{{ invalidMessage.passwordConfirm }} </span>
       </div>
     </div>

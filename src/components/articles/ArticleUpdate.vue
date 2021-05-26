@@ -1,21 +1,27 @@
 <template>
 <div>
-  <hr>
-    <h3>ArticleUpdate Component</h3>
-    <h3>{{ article.movie.title }}에 대한 리뷰</h3>
-    <small>글 번호 : {{ article.id }}</small>
-    <!-- <h2>'{{ article.user.username }}'님의 리뷰 :  {{ article.title }}</h2> -->
-    <input type="text" v-model="credentials.title" placeholder="글 제목">
-    <input type="text" v-model="credentials.content" placeholder="내용">
-    <!-- <small>작성일 : {{ new Date(article.created_at).toLocaleString() }} | 수정일 : {{ new Date(article.updated_at).toLocaleString() }}</small> -->
-    <hr>
-    <!-- <p> {{ article.content }}</p> -->
-    <button @click="updateArticle">리뷰 수정</button>
-    <button>리뷰 삭제</button>
-    <hr>
-    <p>이전글 : 모시기모시기</p>  
-    <p>다음글 : 모시기모시기</p>  
-  <hr>
+    <h3>ArticleUpdate</h3>
+    <br>
+    <h3>🎬 {{ article.movie.title }}</h3>
+    <form class="row g-3 form"  @submit.prevent='updateArticle'>
+      <div class="mb-3 row">
+        <label for="title" class="col-sm-2 col-form-label">Title</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="title" v-model="credentials.title" placeholder="Title">
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="content" class="col-sm-2 col-form-label">Content</label>
+        <div class="col-sm-10">
+          <textarea type="text" class="form-control" id="content" v-model="credentials.content" placeholder="Content"></textarea>
+        </div>
+      </div>
+      <p class='d-flex justify-content-end pe-3'>
+      <button class="btn mx-2" type="button">수정하기</button>
+      <button class="btn me-4" type="button">취소</button>
+      </p>
+    </form>
+
 </div>
 </template>
 <script>
@@ -27,8 +33,8 @@ export default {
   data: function () {
     return {
       credentials: {
-        title: '',
-        content: '',
+        title: this.article.title,
+        content: this.article.content,
       }
     }
   },
@@ -74,3 +80,17 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+#content {
+  height: 300px;
+}
+
+h1, h3 {
+  margin : 10px auto;
+}
+
+.form {
+  margin : 50px auto;
+}
+</style>

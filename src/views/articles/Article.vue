@@ -3,8 +3,8 @@
     <h1>Review Board</h1>
     <ArticleList :articleList="articleList"/>
 
-    <router-link :to="{ name : 'ArticleCreate' }"> 
-      <button class='btn'>게시글 작성 </button>
+    <router-link class='a-to-btn' :to="{ name : 'ArticleCreate' }"> 
+    게시글 작성
     </router-link>
   </div>
 </template>
@@ -39,22 +39,9 @@ export default {
 </script>
 
 <style scoped>
-li {
-  /* list-style: none; */
-}
-.list-group {
-  color: #1f1f1f;
-  background-color: #ffffff;
-}
-.list-group-item {
-  /* border : 1px solid rgba(255, 255, 255, 0.125); */
-  color: #1f1f1f;
-  background-color: #ffffff;
-}
-.btn {
-  display : block;
+.a-to-btn {
+  display: block;
   margin-left: auto;
+  width : 150px;
 }
-
-
 </style>
