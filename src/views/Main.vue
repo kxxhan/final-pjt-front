@@ -1,13 +1,12 @@
 <template>
   <div class="main container-fluid">
-    {{recommendsKeys}}
     <section v-for='genreKey in recommendsKeys' :key='genreKey'>
       <h2>{{ genreKey }}</h2>
       <br>
       <div class='d-flex flex-row'>
         <div v-for='recommend in recommends[genreKey]' :key='genreKey+recommend.id'>
           <router-link :to="{ path : `movie/${recommend.id}` }">
-            <img :src="'http://image.tmdb.org/t/p/w500/' + recommend.poster_path" width='300px'>
+            <img :src="'http://image.tmdb.org/t/p/w500/' + recommend.backdrop_path" width='300px'>
             <p>{{recommend.title}}</p> 
           </router-link>
         </div>
@@ -18,7 +17,7 @@
     <section class='d-flex flex-row'>
       <div  v-for='movie in movies' :key='movie.id'>
         <router-link  :to="{ path : `movie/${movie.id}` }">
-          <img :src="'http://image.tmdb.org/t/p/w500/' + movie.poster_path" width='300px'>
+          <img :src="'http://image.tmdb.org/t/p/w500/' + movie.backdrop_path" width='300px'>
           <p>{{movie.title}}</p> 
         </router-link>
       </div>

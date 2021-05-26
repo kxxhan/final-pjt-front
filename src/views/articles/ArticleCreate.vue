@@ -1,22 +1,36 @@
 <template>
   <div>
     <h1>ArticleCreate</h1>
-    <input type="text" v-model="query" @input="getAccordedMovie()" placeholder="검색">
-    <section v-if="query">
-      <div v-for="accordedMovie in accordedMovies" :key="accordedMovie.id">
-        <ul>
-          <li @click="setMovieInfo(accordedMovie.title, accordedMovie.id)"> {{ accordedMovie.title }}</li>
-        </ul>
+    <h3>{{ this.movieTitle }}</h3>
+    <form class="row g-3 form"  @submit.prevent=''>
+      <div class="mb-3 row">
+        <label for="movie" class="col-sm-2 col-form-label">Movie</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="movie" v-model="query" placeholder="검색"  @input="getAccordedMovie()" >
+        </div>
       </div>
-    </section>
-    <div>
-    <h3>영화제목 : {{ this.movieTitle }}</h3>
-    <input type="text" v-model="credentials.title">
-    <br>
-    <input type="text" v-model="credentials.content">
-    <br>
-    <button @click="createArticle">저장</button>
-    </div>
+      <section v-if="query">
+        <div v-for="accordedMovie in accordedMovies" :key="accordedMovie.id">
+          <ul>
+            <li @click="setMovieInfo(accordedMovie.title, accordedMovie.id)"> {{ accordedMovie.title }}</li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="mb-3 row">
+        <label for="title" class="col-sm-2 col-form-label">Title</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="title" v-model="credentials.title" placeholder="Title">
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="content" class="col-sm-2 col-form-label">Content</label>
+        <div class="col-sm-10">
+          <textarea type="text" class="form-control" id="content" v-model="credentials.content" placeholder="Content"></textarea>
+        </div>
+      </div>
+      <button @submit="createArticle" class="btn" type="submit">저장</button>
+    </form>
   </div>
 </template>
 <script>
@@ -89,5 +103,21 @@ export default {
 <style scoped>
 li {
   list-style: none;
+}
+#content {
+  height: 300px;
+}
+
+.btn {
+  display: block;
+  margin : 20px auto;
+  width : 300px;
+}
+h1, h3 {
+  margin : 10px auto;
+}
+
+.form {
+  margin : 50px auto;
 }
 </style>

@@ -6,8 +6,8 @@
           <router-link :to="{ name : 'Main' }">Main</router-link> |
           <router-link :to="{ name : 'Article' }">Board</router-link> |
         </span>
-        <router-link to="#" @click.native="logout">Logout</router-link> 
-        <router-link to="#" v-if="isSuperUser" @click.native="goAdmin">| Admin</router-link> 
+        <router-link to="#" @click.native="logout">Logout</router-link> | 
+        <router-link to="#" v-if="isSuperUser" @click.native="goAdmin">Admin</router-link> 
       </span>
       <span v-else>
         <router-link :to="{ name : 'Home' }">Home</router-link> |
