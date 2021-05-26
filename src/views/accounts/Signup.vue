@@ -1,27 +1,37 @@
 <template>
-  <div>
+  <div >
     <h1>Signup</h1>
-    <div>
-      <label for="email">Email: </label>
-      <input type="email" id="email" v-model="credentials.email">
-      <span v-if="invalidMessage.email">{{ invalidMessage.email }} </span>
+    <form class="row g-3" id='signup' @submit.prevent='signup'>
+    <div class="mb-3 row">
+      <label for="email" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="email" v-model="credentials.email" placeholder="email@example.com">
+        <span v-if="invalidMessage.email">{{ invalidMessage.email }}</span>
+      </div>
     </div>
-    <div>
-      <label for="username">사용자 이름: </label>
-      <input type="text" id="username" v-model="credentials.username">
-      <span v-if="invalidMessage.username">{{ invalidMessage.username }} </span>
+    <div class="mb-3 row">
+      <label for="username" class="col-sm-2 col-form-label">Username</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="username" v-model="credentials.username" placeholder="username">
+        <span v-if="invalidMessage.username">{{ invalidMessage.username }}</span>
+      </div>
     </div>
-    <div>
-      <label for="password">비밀번호: </label>
-      <input type="password" id="password" v-model="credentials.password">
-      <span v-if="invalidMessage.password">{{ invalidMessage.password }} </span>
+    <div class="mb-3 row">
+      <label for="password" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" id="password" v-model="credentials.password">
+        <span v-if="invalidMessage.password">{{ invalidMessage.password }} </span>
+      </div>
     </div>
-    <div>
-      <label for="passwordConfirm">비밀번호 확인: </label>
-      <input type="password" id="passwordConfirm" v-model="credentials.passwordConfirm">
-      <span v-if="invalidMessage.passwordConfirm">{{ invalidMessage.passwordConfirm }} </span>
+    <div class="mb-3 row">
+      <label for="password-confirm" class="col-sm-2 col-form-label">Password Confirm</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" id="password-confirm" v-model="credentials.passwordConfirm">
+        <span v-if="invalidMessage.passwordConfirm">{{ invalidMessage.passwordConfirm }} </span>
+      </div>
     </div>
-    <button @click="signup">회원가입</button>
+    <button class="btn" type="submit">회원가입</button>
+    </form>
   </div>
 </template>
 
@@ -91,5 +101,12 @@ export default {
   span {
     color : crimson;
     font-size: 0.8rem;
+  }
+  #signup {
+    margin : 50px auto;
+    max-width: 500px;
+  }
+  h1 {
+    margin : 0 auto;
   }
 </style>

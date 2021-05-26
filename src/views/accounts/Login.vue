@@ -1,15 +1,21 @@
 <template>
-    <div>
+  <div >
     <h1>Login</h1>
-    <div>
-      <label for="email">Email: </label>
-      <input type="email" id="email" v-model="credentials.email">
+    <form class="row g-3" id='login' @submit.prevent='login'>
+    <div class="mb-3 row">
+      <label for="email" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="email" v-model="credentials.email" placeholder="email@example.com">
+      </div>
     </div>
-    <div>
-      <label for="password">비밀번호: </label>
-      <input type="password" id="password" @keyup.enter="login" v-model="credentials.password">
+    <div class="mb-3 row">
+      <label for="password" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" id="password" v-model="credentials.password">
+      </div>
     </div>
-    <button @click="login">로그인</button>
+    <button class="btn" type="submit">로그인</button>
+  </form>
   </div>
 </template>
 
@@ -40,6 +46,17 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  #login {
+    margin : 100px auto;
+    max-width: 500px;
+  }
+  h1 {
+    margin : 0 auto;
+  }
 
+  /* .btn {
+    background-color: #ea5249 ;
+    color: #ffffff;
+  } */
 </style>

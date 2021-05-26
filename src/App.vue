@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class='container-sm'>
     <div id="nav">
       <span v-if="isLogin">
         <span v-if="isRecommended">
@@ -66,7 +66,8 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #1f1f1f;
+  background-color: #ffffff;
 }
 
 #nav {
@@ -75,10 +76,15 @@ export default {
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #1f1f1f;
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #ea5249;
+}
+
+.btn {
+  background-color: #ea5249 ;
+  color: #ffffff;
 }
 </style>

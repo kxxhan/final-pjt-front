@@ -42,6 +42,15 @@ export default {
 
 <style scoped>
 li {
-  list-style: none;
+  /* list-style: none; */
+}
+.list-group {
+  color: #1f1f1f;
+  background-color: #ffffff;
+}
+.list-group-item {
+  /* border : 1px solid rgba(255, 255, 255, 0.125); */
+  color: #1f1f1f;
+  background-color: #ffffff;
 }
 </style>
