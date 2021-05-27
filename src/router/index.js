@@ -22,7 +22,11 @@ const routes = [
     component: Home,
     beforeEnter : function (to, from, next) {
       if (store.state.isLogin){
-        next({ name : 'Main' })
+        if (store.state.userData.is_recommended){
+          next()
+        }else{
+          next({ name : 'Recommend' })
+        }
       }
       next()
     }
@@ -33,7 +37,11 @@ const routes = [
     component: Main,
     beforeEnter : function (to, from, next) {
       if (store.state.isLogin){
-        next()
+        if (store.state.userData.is_recommended){
+          next()
+        }else{
+          next({ name : 'Recommend' })
+        }
       }else{
         next({ name : 'Login'})
       }
@@ -45,6 +53,11 @@ const routes = [
     component: Recommend,
     beforeEnter : function (to, from, next) {
       if (store.state.isLogin){
+        if (store.state.userData.is_recommended){
+          next({ name : 'Main' })
+        }else{
+          next()
+        }
         next()
       }else{
         next({ name : 'Login'})
@@ -57,7 +70,11 @@ const routes = [
     component : MovieDetail,
     beforeEnter : function (to, from, next) {
       if (store.state.isLogin){
-        next()
+        if (store.state.userData.is_recommended){
+          next()
+        }else{
+          next({ name : 'Recommend' })
+        }
       }else{
         next({ name : 'Login'})
       }
@@ -69,7 +86,11 @@ const routes = [
     component: Article,
     beforeEnter : function (to, from, next) {
       if (store.state.isLogin){
-        next()
+        if (store.state.userData.is_recommended){
+          next()
+        }else{
+          next({ name : 'Recommend' })
+        }
       }else{
         next({ name : 'Login'})
       }
@@ -81,7 +102,11 @@ const routes = [
     component: ArticleCreate,
     beforeEnter : function (to, from, next) {
       if (store.state.isLogin){
-        next()
+        if (store.state.userData.is_recommended){
+          next()
+        }else{
+          next({ name : 'Recommend' })
+        }
       }else{
         next({ name : 'Login'})
       }
@@ -93,7 +118,11 @@ const routes = [
     component: ArticleDetail,
     beforeEnter : function (to, from, next) {
       if (store.state.isLogin){
-        next()
+        if (store.state.userData.is_recommended){
+          next()
+        }else{
+          next({ name : 'Recommend' })
+        }
       }else{
         next({ name : 'Login'})
       }
@@ -126,10 +155,8 @@ const routes = [
     name: 'Http404',
     component: Http404,
     beforeEnter : function (to, from, next) {
-      if (store.state.isLogin && store.state.userData.is_recommended){
+      if (store.state.isLogin){
         next()
-      }else if (!store.state.userData.is_recommended){
-        next({ name : 'Recommend' })
       }else{
         next({ name : 'Login'})
       }

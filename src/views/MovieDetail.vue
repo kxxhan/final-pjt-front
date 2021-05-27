@@ -1,45 +1,45 @@
 <template>
-  <div class="movie-detail">
-    <!-- 영화 리뷰 글 임시 시작 -->
-    <hr>
-    <ul>
-      <li v-for="article in articles" :key='article.id'> 
-        No.{{ article.id }} |
-        <b>{{ article.title }} </b> <span>{{ article.content }}</span> 
-        <br>
-        작성자 {{article.user.username}} |
-        <small>작성일 : {{ article.created_at }}</small>
-      </li>
-      <hr>
-    </ul>
-    <!-- 영화 리뷰 글 임시 끝 -->
-    
-    <h1>{{ movie.title }} </h1>
-    <small>({{ movie.original_title }})</small>
-    <p v-if="rating">
-      내 평점  <span v-for='i in rating' :key='i'>⭐</span>
-    </p>
-    <p v-else>
-      이 영화를 평가해주세요⭐
-    </p>
-    <!-- 삭제 로직은 rating이 있을 때만 보내야함 -->
-    <button v-if='rating' @click='deleteRating'>평점 지우기</button>
-    <!-- 여기에 평가하기 로직 구현 : 평가가 있던 없던 상관 없음 -->
-    <p>
-      <select v-model="new_rating">
+  <div class="movie-detail d-block d-lg-flex justify-content-start">
+    <img v-if='movie.poster_path'  :src="'http://image.tmdb.org/t/p/w500/'+ movie.poster_path " alt="">
+    <!-- 한 묶음 시작 -->
+    <div class='flex-fill m-5'>
+      <span class='fs-2 '>{{ movie.title }} </span>
+      <small>({{ movie.original_title }})</small>
+      <p v-if="rating">
+        내 평점  <span v-for='i in rating' :key='i'>⭐</span>
+      </p>
+      <p v-else> 이 영화를 평가해주세요⭐ </p>
+      <!-- 삭제 로직은 rating이 있을 때만 보내야함 -->
+      <!-- 여기에 평가하기 로직 구현 : 평가가 있던 없던 상관 없음 -->
+      <p>
+        평점 남기기 : 
+      <select class="form-select w-25 d-inline" v-model="new_rating">
         <option :value="i" v-for='i in 10' :key='i'>{{ i }}</option>
       </select> 
       <span v-if='new_rating'> | 
-        <button  @click='vote'>
-          평점 
-          <span v-if='rating'>수정</span> 
-          <span v-else >등록</span> 
-        </button>
+        <button class='btn d-inline' @click='vote'>
+          <span v-if='rating'>평점 수정</span> 
+          <span v-else >평점 등록</span> 
+        </button> |
+        <button class='btn' v-if='rating' @click='deleteRating'>평점 지우기</button>
       </span>
-    </p>
-    <br>
-    <img v-if='movie.poster_path' :src="'http://image.tmdb.org/t/p/w500/'+ movie.poster_path " alt="">
-    <!-- 여기부터 영화 리뷰 글 페이지 -->
+      </p>
+      <hr>
+      <!-- 영화 overview 시작 -->
+      <p v-if='movie.overview'>
+        {{ movie.overview }}
+      </p>
+      <p v-else>
+        줄거리가 없어요..
+      </p>
+      <!-- 영화 overview 끝 -->
+      <hr>
+      <h3 class='my-4'>이 영화의 리뷰</h3>
+      <!-- 이 영화의 리뷰 시작 -->
+      <ArticleList :articleList="articleList"/>
+      <!-- 이 영화의 리뷰 끝 -->
+      </div>
+    <!-- 한 묶음 끝 -->
 
   </div>
 </template>
@@ -47,28 +47,19 @@
 <script>
 import axios from 'axios'
 const SERVER_URL = process.env.VUE_APP_SERVER_URL
+import ArticleList from '@/components/articles/ArticleList'
 export default {
   name: 'MovieDetail',
+  components :{
+    ArticleList
+  },
   data : function () {
     return {
       movie : {},
       rating : null,
       new_rating : null,
-      articles : [
-        {
-          id : 6,
-          title : '영화리뷰에옹',
-          content : '리뷰 내용이에옹',
-          created_at : Date.now(),
-          updated_at : Date.now(),
-          movie : 35,
-          user : {
-            username : 'ㅋㅋ루삥뽕',
-          },
-          like_users : [],
-        }
-      ],
-    }
+      articleList: [],
+    } 
   },
   methods : {
     vote : async function () {
@@ -119,6 +110,18 @@ export default {
     this.movie = response.data.movie
     this.rating = response.data.rating
     this.new_rating = response.data.rating
+
+
+    // 리뷰 정보 로직
+    axios({
+      method: 'get',
+      url: `${SERVER_URL}/articles/movie/${this.$route.params.movieId}/`
+    }).then((res) => {
+      this.articleList = res.data
+      console.log(this.articleList)
+    }).catch((err) => {
+      console.log(err.response)
+    })
   },
 }
 </script>

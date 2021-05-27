@@ -30,7 +30,7 @@
         <span v-if="invalidMessage.passwordConfirm">{{ invalidMessage.passwordConfirm }} </span>
       </div>
     </div>
-    <button class="btn" type="submit">회원가입</button>
+    <button class="btn" type='submit'>회원가입</button>
     </form>
   </div>
 </template>
@@ -61,13 +61,13 @@ export default {
     signup: async function () {
       // 1. 아이디, 이메일, 비밀번호가 빈칸이면 alert 후 리턴
       if (! this.isValid()) return 
-
       // 2. 통과시 
       const response = await axios({
         method: 'POST',
         url: SERVER_URL + '/accounts/signup/',
         data: this.credentials,
       }).catch(err => {
+        console.log(err.response)
         const data = err.response.data
         for (const key in data) {
           this.invalidMessage[key] = data[key][0]

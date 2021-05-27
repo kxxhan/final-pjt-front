@@ -18,7 +18,7 @@
       </div>
       <p class='d-flex justify-content-end pe-3'>
       <button class="btn mx-2" type="button">수정하기</button>
-      <button class="btn me-4" type="button">취소</button>
+      <button class="btn me-4" type="button" @click="undoUpdate">취소</button>
       </p>
     </form>
 
@@ -63,6 +63,9 @@ export default {
       }).catch ( (err) => {
         console.log(err.response)
       })
+    },
+    undoUpdate : function () {
+      this.$emit('undo-update')
     },
     isValid: function () {
       if (!this.credentials.title) {

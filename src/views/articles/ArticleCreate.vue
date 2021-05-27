@@ -31,7 +31,8 @@
         </div>
       </div>
       <p class='d-flex justify-content-end pe-3'>
-      <button class="btn me-4" type="submit">저장</button>
+      <button class="btn mx-2" type="submit">저장</button>
+      <router-link class='a-to-btn me-4' :to="{ name : 'Article' }">취소</router-link> 
       </p>
     </form>
   </div>

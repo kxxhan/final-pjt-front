@@ -3,15 +3,15 @@
     <div id="nav">
       <span v-if="isLogin">
         <span v-if="isRecommended">
-          <router-link :to="{ name : 'Main' }">Main</router-link> |
-          <router-link :to="{ name : 'Article' }">Board</router-link> |
+          <router-link :to="{ name : 'Main' }">Main</router-link> 
+          <router-link :to="{ name : 'Article' }">Board</router-link> 
         </span>
-        <router-link to="#" @click.native="logout">Logout</router-link> | 
+        <router-link to="#" @click.native="logout">Logout</router-link> 
         <router-link to="#" v-if="isSuperUser" @click.native="goAdmin">Admin</router-link> 
       </span>
       <span v-else>
-        <router-link :to="{ name : 'Home' }">Home</router-link> |
-        <router-link :to="{ name : 'Login' }">Login</router-link> |
+        <router-link :to="{ name : 'Home' }">Home</router-link> 
+        <router-link :to="{ name : 'Login' }">Login</router-link> 
         <router-link :to="{ name : 'Signup' }">Signup</router-link>
       </span>
     </div>
@@ -57,8 +57,15 @@ export default {
 </script>
 
 <style>
-html, body, #app {
+
+
+
+html, body{
   height : 100%;
+}
+
+body {
+  /* background-color: black; */
 }
 
 #app {
@@ -71,6 +78,7 @@ html, body, #app {
   text-align: center;
   color: #1f1f1f;
   background-color: #ffffff;
+  min-height : 100%;
 }
 
 #nav {

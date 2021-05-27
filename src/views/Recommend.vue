@@ -1,8 +1,8 @@
 <template>
 <div class="recommend container-fluid" >
-<h1>Recommend입니다. 아직 안만들었어요</h1>
+<h1>좋아하는 영화를 골라주세요 😋</h1>
 <h2>{{ pickedList.length }} / 5</h2> 
-<section class='row' v-if="show">
+<section class='d-flex flex-wrap' v-if="show">
     <RecommendItem class='col' :movie="movie" v-for='movie in movies' :key='movie.id' @picked="getMovieId" />
 </section>
 </div>
