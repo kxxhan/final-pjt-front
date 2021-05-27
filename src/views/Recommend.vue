@@ -1,12 +1,13 @@
 <template>
 <div class="recommend container-sm" >
+
 <h3>좋아하는 영화를 골라주세요 😋</h3>
 <div class="progress my-3">
     <div class="progress-bar progress-bar-striped" role="progressbar" :style="{width: progress}" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
 <h3>{{ pickedList.length }} / 5</h3> 
 <section class='d-flex flex-wrap' v-if="show">
-    <RecommendItem class='col' :movie="movie" v-for='movie in movies' :key='movie.id' @picked="getMovieId" />
+    <RecommendItem class='col-6 col-lg-4 col-xxl-3' :movie="movie" v-for='movie in movies' :key='movie.id' @picked="getMovieId" />
 </section>
 </div>
 </template>
@@ -19,7 +20,7 @@ const SERVER_URL = process.env.VUE_APP_SERVER_URL
 export default {
     name : 'Recommend',
     components : {
-        RecommendItem
+        RecommendItem,
     },
     data : function () {
         return {
@@ -28,11 +29,12 @@ export default {
         }
     },
     methods : {
-        getMovieId : async function (movieId) {
+        getMovieId : async function ({movieId, rating}) {
             this.pickedList.push({ 
                 'movie' : movieId,
-                'rating' : 8
+                'rating' : rating
             })
+            console.log(this.pickedList);
             if  (this.pickedList.length >= 5) {
                 console.log(this.pickedList);
                 this.show = false
@@ -52,7 +54,7 @@ export default {
                 }
             }
             
-        }
+        },
     },
     created: async function () {
         if (this.$store.state.movies.length)  return 
