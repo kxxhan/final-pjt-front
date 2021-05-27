@@ -8,8 +8,11 @@
       </router-link>
     </vue-glide-slide>
     <template slot="control">
-      <button  @click='decrease'>prev</button>
-      <button @click='increase'>next2</button>
+      <div class='d-flex justify-content-between'>
+      <i @click='decrease' class="fas fa-chevron-left mx-4"></i>
+      <i @click='increase' class="fas fa-chevron-right mx-4"></i>
+
+      </div>
     </template>
   </vue-glide>
 </template>
@@ -47,7 +50,14 @@ export default {
   },
 }
 </script>
+<style scoped>
+  i {
+    cursor : pointer;
+    font-size: 2rem;
 
-<style>
-
+  }
+  i:hover {
+    transition: 0.4s;
+    color : #ea5249;
+  }
 </style>
