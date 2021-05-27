@@ -34,7 +34,7 @@
       <hr>
       <h3 class='my-4'>이 영화의 리뷰</h3>
       <!-- 이 영화의 리뷰 시작 -->
-      <ArticleList :articleList="articleList"/>
+      <ArticleList :articleList="articleList" :isMovieDetail='true'/>
       <!-- 이 영화의 리뷰 끝 -->
       </div>
     <!-- 한 묶음 끝 -->

@@ -2,7 +2,8 @@
     <tr>
       <th scope="row">{{ article.id }}</th>
       <td>
-      <router-link class='a-in-tr' :to="{ path : `movie/${article.movie.id}` }">{{ article.movie.title }}</router-link>
+      <div v-if='isMovieDetail'>{{ article.movie.title }}</div>
+      <router-link v-else class='a-in-tr' :to="{ path : `movie/${article.movie.id}` }">{{ article.movie.title }}</router-link>
       </td>
       <td>
         <router-link class='a-in-tr' :to="{ path : `/board/${article.id}` }">{{ article.title }}</router-link>
@@ -22,6 +23,10 @@ export default {
     article: {
       type: Object,
       required: true
+    },
+    isMovieDetail : {
+      type : Boolean,
+      required : true
     }
   },
   methods: {

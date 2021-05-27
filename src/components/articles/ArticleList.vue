@@ -14,6 +14,7 @@
         <ArticleListItem 
         v-for="article in paginatedData" :key="article.id"
         :article="article"
+        :isMovieDetail='isMovieDetail'
         />
       </tbody>
     </table>
@@ -53,6 +54,10 @@ export default {
       type: Number,
       required: false,
       default: 10 
+    },
+    isMovieDetail : {
+      type : Boolean,
+      required : true
     }
   },
   methods: {

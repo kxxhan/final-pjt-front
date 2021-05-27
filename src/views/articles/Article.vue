@@ -1,7 +1,7 @@
 <template>
   <div class="container-sm board">
     <h1>Review Board</h1>
-    <ArticleList :articleList="articleList"/>
+    <ArticleList :articleList="articleList" :isMovieDetail='false'/>
 
     <router-link class='a-to-btn' :to="{ name : 'ArticleCreate' }"> 
     게시글 작성
