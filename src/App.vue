@@ -120,7 +120,7 @@ body {
 
 .container-sm {
   /* margin-top: 50px; */
-  margin : 100px auto;
+  margin-top : 80px;
 }
 /* 건 수정 부분 끝*/
 #nav a {

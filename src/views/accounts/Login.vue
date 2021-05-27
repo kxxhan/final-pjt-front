@@ -1,7 +1,7 @@
 <template>
   <div >
     <h1>Login</h1>
-    <form class="row g-3" id='login' @submit.prevent='login'>
+    <form class="d-flex-row justify-content-center" id='login' @submit.prevent='login'>
     <div class="mb-3 row">
       <label for="email" class="col-sm-2 col-form-label">Email</label>
       <div class="col-sm-10">
@@ -48,7 +48,7 @@ export default {
 
 <style scoped>
   #login {
-    margin : 100px auto;
+    margin : 50px auto;
     max-width: 500px;
   }
   h1 {

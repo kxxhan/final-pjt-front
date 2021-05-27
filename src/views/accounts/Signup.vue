@@ -1,7 +1,7 @@
 <template>
   <div >
     <h1>Signup</h1>
-    <form class="row g-3" id='signup' @submit.prevent='signup'>
+    <form class="d-flex-row justify-content-center" id='signup' @submit.prevent='signup'>
     <div class="mb-3 row">
       <label for="email" class="col-sm-2 col-form-label">Email</label>
       <div class="col-sm-10">
