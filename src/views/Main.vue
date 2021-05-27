@@ -1,5 +1,5 @@
 <template>
-  <div class="main container-fluid">
+  <div class="container-sm main">
     <section v-for='genreKey in recommendsKeys' :key='genreKey'>
       <h2 class='genre-title'>🎬 {{ genreKey }} 추천 영화</h2>
       <Carousel :recommends='recommends[genreKey]' :genreKey='genreKey'/>
@@ -79,9 +79,10 @@ export default {
 </script>
 
 <style scoped>
-/* .flex-row {
-  overflow: scroll;
-} */
+.main {
+  margin-top: 60px;
+}
+
 .genre-title {
   text-align: start;
   padding: 5px 0;

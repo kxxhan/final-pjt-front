@@ -1,5 +1,5 @@
 <template>
-  <div class="board">
+  <div class="container-sm board">
     <h1>Review Board</h1>
     <ArticleList :articleList="articleList"/>
 
@@ -39,6 +39,10 @@ export default {
 </script>
 
 <style scoped>
+.board {
+  margin-top: 60px;
+}
+
 .a-to-btn {
   display: block;
   margin-left: auto;
