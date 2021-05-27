@@ -1,5 +1,5 @@
 <template>
-  <vue-glide :active='active'>
+  <vue-glide v-model='active' :perView='4' :startAt='1' :rewind='true'>
     <vue-glide-slide v-for='recommend in recommends' :key='genreKey+recommend.id'>
       <router-link :to="{ path : `movie/${recommend.id}` }">
         <img class='w-100' :src="'http://image.tmdb.org/t/p/w500/' + recommend.backdrop_path" >
@@ -11,7 +11,6 @@
       <div class='d-flex justify-content-between'>
       <i @click='decrease' class="fas fa-chevron-left mx-4"></i>
       <i @click='increase' class="fas fa-chevron-right mx-4"></i>
-
       </div>
     </template>
   </vue-glide>
@@ -42,12 +41,15 @@ export default {
   },
   methods : {
     increase : function () {
-      this.active  = this.active + 3
+      this.active  = this.active + 4
     }, 
     decrease : function () {
-      this.active  = this.active - 3
+      this.active  = this.active - 4
     }, 
   },
+  created : function () {
+    this.perView = 4
+  }
 }
 </script>
 <style scoped>

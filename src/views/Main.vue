@@ -1,12 +1,11 @@
 <template>
   <div class="main container-fluid">
     <section v-for='genreKey in recommendsKeys' :key='genreKey'>
-      <h2>🎬 {{ genreKey }} 추천 영화</h2>
-      <br>
+      <h2 class='genre-title'>🎬 {{ genreKey }} 추천 영화</h2>
       <Carousel :recommends='recommends[genreKey]' :genreKey='genreKey'/>
       <hr>
     </section>
-    <h1>All Movies</h1>
+    <h2 class='genre-title'>🎬 All Movies</h2>
     <Carousel :recommends='movies' :genreKey='"all"'/>
     <!-- <section>
       <vue-glide>
@@ -83,5 +82,8 @@ export default {
 /* .flex-row {
   overflow: scroll;
 } */
-
+.genre-title {
+  text-align: start;
+  padding: 5px 0;
+}
 </style>

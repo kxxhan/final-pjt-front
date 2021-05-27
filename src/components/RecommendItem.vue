@@ -42,6 +42,12 @@ export default {
     color: crimson;
   }
   .card {
-    margin : 5px 10px;
+    margin : 10px 10px;
+    border : 0;
+    border-radius : 2px
+  }
+
+  img {
+    border-radius : 3px
   }
 </style>
