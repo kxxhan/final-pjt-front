@@ -5,14 +5,7 @@
     <section
       class="d-flex justify-content-center p-3"
     >
-      <!-- Left -->
-      <div class="me-5 d-none d-md-block">
-        <span>Get connected with us on social networks:</span>
-      </div>
-      <!-- Left -->
-
       <!-- Right -->
-      <div>
         <a href="mailto:ofliberty2@gmail.com" class="me-4 text-reset">
           <i class="fab fa-google"></i>
         </a>
@@ -25,7 +18,7 @@
         <a href="https://lab.ssafy.com/wns312/final-pjt-front" class="me-4 text-reset">
           <i class="fab fa-gitlab"></i>
         </a>
-      </div>
+      
       <!-- Right -->
     </section>
     <!-- Section: Social media -->
@@ -55,4 +48,7 @@ export default {
     bottom: 0;
     width: 100%;
   }
+a {
+  margin : 5px !important;
+}
 </style>
