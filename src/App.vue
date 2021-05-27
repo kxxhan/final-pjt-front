@@ -122,7 +122,7 @@ body {
 }
 
 .container-sm {
-  /* margin-top: 50px; */
+  margin-top: 50px;
   /* margin-top : 80px; */
 }
 /* 건 수정 부분 끝*/

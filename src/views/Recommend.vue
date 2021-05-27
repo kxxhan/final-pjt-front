@@ -1,5 +1,5 @@
 <template>
-<div class="recommend container-fluid" >
+<div class="recommend container-sm" >
 <h1>좋아하는 영화를 골라주세요 😋</h1>
 <h2>{{ pickedList.length }} / 5</h2> 
 <section class='d-flex flex-wrap' v-if="show">

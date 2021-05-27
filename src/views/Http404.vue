@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class='container-sm'>
     <h1>Oops!!</h1>
     <h2>404 : Page Not Found</h2>
   </div>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class='container-sm'>
     <ArticleUpdate
     v-if="isUpdate"
       :isUpdate="isUpdate"

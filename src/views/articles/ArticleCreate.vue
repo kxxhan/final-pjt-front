@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class='container-sm'>
     <h1>ArticleCreate</h1>
     <br>
     <h3 v-if='movieTitle'>🎬 {{ movieTitle }}</h3>

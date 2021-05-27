@@ -1,5 +1,5 @@
 <template>
-<div class="hero-image">
+<div class="hero-image ">
   <div class="hero-text">
     <h1 class="p-title">당신만을 위한,</h1>
     <h1 class="p-title">영화 추천 커뮤니티</h1>
