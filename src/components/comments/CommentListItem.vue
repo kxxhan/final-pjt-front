@@ -1,7 +1,7 @@
 <template>
   <div>
     <hr>
-    <p class='d-flex justify-content-start justify-content-md-start mx-auto '>
+    <p class='d-flex justify-content-start justify-content-md-start align-items-center mx-auto '>
       <b class='mx-2'>{{ comment.user.username }}</b> :
       <span class='mx-2'>{{ comment.content }}</span>
       <small class='pt-1'> ( {{ new Date(comment.updated_at).toLocaleString() }} )</small>

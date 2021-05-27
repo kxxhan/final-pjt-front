@@ -68,7 +68,7 @@ export default {
         url: `${SERVER_URL}/articles/${this.$route.params.articleId}/`
       }).then( (res) => {
         console.log(res)
-        this.$router.push({ name: 'ArticleList' })
+        this.$router.push({ name: 'Article' })
       }).catch((err) => {
         console.log(err.response)
       })

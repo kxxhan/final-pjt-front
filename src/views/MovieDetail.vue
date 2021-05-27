@@ -3,7 +3,7 @@
     <img v-if='movie.poster_path'  :src="'http://image.tmdb.org/t/p/w500/'+ movie.poster_path " alt="">
     <!-- 한 묶음 시작 -->
     <div class='flex-fill m-5'>
-      <span class='fs-2 '>{{ movie.title }} </span>
+      <span class='fs-2'>{{ movie.title }} </span>
       <small>({{ movie.original_title }})</small>
       <p v-if="rating">
         내 평점  <span v-for='i in rating' :key='i'>⭐</span>
