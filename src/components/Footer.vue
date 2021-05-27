@@ -5,12 +5,6 @@
     <section
       class="d-flex justify-content-center p-3"
     >
-      <!-- Left -->
-      <div class="me-5 d-none d-md-block">
-        <span>Get connected with us on social networks:</span>
-      </div>
-      <!-- Left -->
-
       <!-- Right -->
       <div>
         <a href="mailto:ofliberty2@gmail.com" class="me-4 text-reset">

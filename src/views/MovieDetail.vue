@@ -11,18 +11,16 @@
       <p v-else> 이 영화를 평가해주세요⭐ </p>
       <!-- 삭제 로직은 rating이 있을 때만 보내야함 -->
       <!-- 여기에 평가하기 로직 구현 : 평가가 있던 없던 상관 없음 -->
-      <p>
-        평점 남기기 : 
-      <select class="form-select w-25 d-inline" v-model="new_rating">
-        <option :value="i" v-for='i in 10' :key='i'>{{ i }}</option>
-      </select> 
-      <span v-if='new_rating'> | 
-        <button class='btn d-inline' @click='vote'>
-          <span v-if='rating'>평점 수정</span> 
-          <span v-else >평점 등록</span> 
-        </button> |
-        <button class='btn' v-if='rating' @click='deleteRating'>평점 지우기</button>
-      </span>
+      <p class='d-flex justify-content-center align-items-center score'>
+        <span>⭐평점⭐</span>
+        <select class="form-select w-25 d-inline" v-model="new_rating">
+          <option :value="i" v-for='i in 10' :key='i'>{{ i }}</option>
+        </select> 
+        <span v-if='new_rating'> 
+            <button class='btn mx-2' v-if='rating'  @click='vote'>평점 수정</button> 
+            <button class='btn mx-2' v-else  @click='vote'>평점 등록</button> 
+          <button class='btn' v-if='rating' @click='deleteRating'>평점 지우기</button>
+        </span>
       </p>
       <hr>
       <!-- 영화 overview 시작 -->
@@ -110,8 +108,6 @@ export default {
     this.movie = response.data.movie
     this.rating = response.data.rating
     this.new_rating = response.data.rating
-
-
     // 리뷰 정보 로직
     axios({
       method: 'get',
@@ -136,5 +132,9 @@ li {
 }
 b {
   text-align: start;
+}
+
+.score > * {
+  margin : 2px;
 }
 </style>
