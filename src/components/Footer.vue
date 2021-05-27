@@ -6,7 +6,6 @@
       class="d-flex justify-content-center p-3"
     >
       <!-- Right -->
-      <div>
         <a href="mailto:ofliberty2@gmail.com" class="me-4 text-reset">
           <i class="fab fa-google"></i>
         </a>
@@ -19,7 +18,7 @@
         <a href="https://lab.ssafy.com/wns312/final-pjt-front" class="me-4 text-reset">
           <i class="fab fa-gitlab"></i>
         </a>
-      </div>
+      
       <!-- Right -->
     </section>
     <!-- Section: Social media -->
@@ -44,5 +43,7 @@ export default {
 </script>
 
 <style scoped>
-
+a {
+  margin : 5px !important;
+}
 </style>
