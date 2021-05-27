@@ -1,13 +1,15 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
+    
+    <nav class="navbar navbar-dark navbar-expand-md navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Moview</a>
+        <img class='me-2' src="../public/logo.png" alt="" width='130px'>
+        <!-- <a class="navbar-brand" href="#">Moview</a> -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon "></span>
         </button>
         <!-- id navbarNav => nav로 변경 -->
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <span class="navbar-nav" v-if="isLogin">
             <span class="navbar-nav" v-if="isRecommended">
               <router-link class="nav-item nav-link" id="r-link" :to="{ name : 'Main' }">Main</router-link>
@@ -25,6 +27,7 @@
       </div>
     </nav>
     <router-view/>
+    <div class='footer-box'></div>
     <Footer/> 
   </div>
 </template>
@@ -79,8 +82,8 @@ html, body{
   height : 100%;
 }
 
-body {
-  /* background-color: black; */
+h1 {
+  text-align: center;
 }
 
 #app {
@@ -122,7 +125,7 @@ body {
 }
 
 .container-sm {
-  margin-top: 50px;
+  margin: 100px auto;
   /* margin-top : 80px; */
 }
 /* 건 수정 부분 끝*/
@@ -173,6 +176,14 @@ a {
   background-color: #ffffff;
   color: #ea5249 !important;
   border : 1px solid #ea5249;
+}
+
+.navbar-toggler{
+  border : none;
+}
+
+.footer-box {
+  height: 100px;
 }
 </style>
     

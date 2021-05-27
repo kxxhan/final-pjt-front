@@ -1,16 +1,16 @@
 <template>
 <div class="hero-image ">
-  <div class="hero-text">
-    <h1 class="p-title">당신만을 위한,</h1>
-    <h1 class="p-title">영화 추천 커뮤니티</h1>
+<div class="hero-text">
+<h1 class="p-title">당신만을 위한,</h1>
+<h1 class="p-title">영화 추천 커뮤니티</h1>
 
-    <p class="p-sub">좋아하는 영화들을 선택하고 
-        취향에 맞는 추천 영화를 만나보세요!</p>
+<p class="p-sub">좋아하는 영화들을 선택하고 
+    취향에 맞는 추천 영화를 만나보세요!</p>
 
-    <p class="p-sub2">추천 받은 영화에 리뷰를 남기고 많은 사람과 공유할 수 있습니다.</p>
-    <button @click="signup" class="btn">SIGN UP</button>
-    <p class="ready">준비가 되셨나요? 서비스를 시작하시려면 지금 Sign up을 누르세요! </p>
-  </div>
+<p class="p-sub2">추천 받은 영화에 리뷰를 남기고 많은 사람과 공유할 수 있습니다.</p>
+<button @click="signup" class="btn">SIGN UP</button>
+<p class="ready">준비가 되셨나요? 서비스를 시작하시려면 지금 Sign up을 누르세요! </p>
+</div>
 </div>
 </template>
 

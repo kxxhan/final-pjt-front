@@ -137,4 +137,9 @@ b {
 .score > * {
   margin : 2px;
 }
+
+img {
+  max-width : 400px;
+  height : auto;
+}
 </style>

@@ -41,6 +41,7 @@ export default {
 <style scoped>
 .board {
   margin-top: 60px;
+  
 }
 
 .a-to-btn {

@@ -1,7 +1,10 @@
 <template>
 <div class="recommend container-sm" >
-<h1>좋아하는 영화를 골라주세요 😋</h1>
-<h2>{{ pickedList.length }} / 5</h2> 
+<h3>좋아하는 영화를 골라주세요 😋</h3>
+<div class="progress my-3">
+    <div class="progress-bar progress-bar-striped" role="progressbar" :style="{width: progress}" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<h3>{{ pickedList.length }} / 5</h3> 
 <section class='d-flex flex-wrap' v-if="show">
     <RecommendItem class='col' :movie="movie" v-for='movie in movies' :key='movie.id' @picked="getMovieId" />
 </section>
@@ -61,11 +64,24 @@ export default {
     computed : {
         movies : function () {
             return this.$store.state.movies
+        },
+        progress : function () {
+            console.log(''+(this.pickedList.length/5*100)+'%');
+            return ''+(this.pickedList.length/5*100)+'%'
         }
     },
 }
 </script>
 
-<style>
-
+<style scoped>
+h3{
+    text-align: center;
+}
+.progress {
+    height: 30px;
+    
+}
+.progress-bar {
+    background-color : #ea5249;
+}
 </style>

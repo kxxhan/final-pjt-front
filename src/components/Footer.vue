@@ -1,5 +1,6 @@
 <template>
     <!-- Footer -->
+  
   <footer class="text-center text-md-start bg-light text-muted footer" style="margin-top : 80px align-items:bottom">
     <!-- Section: Social media -->
     <section
@@ -47,6 +48,7 @@ export default {
     position: fixed;
     bottom: 0;
     width: 100%;
+    height : 100px;
   }
 a {
   margin : 5px !important;
