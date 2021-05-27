@@ -68,8 +68,15 @@ export default {
 </script>
 
 <style>
-html, body, #app {
+
+
+
+html, body{
   height : 100%;
+}
+
+body {
+  /* background-color: black; */
 }
 
 #app {
@@ -82,6 +89,7 @@ html, body, #app {
   text-align: center;
   color: #1f1f1f;
   background-color: #ffffff;
+  min-height : 100%;
 }
 
 #nav {

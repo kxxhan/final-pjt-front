@@ -5,6 +5,7 @@
       :isUpdate="isUpdate"
       :article="article"
       @updated="updateArticle"
+      @undo-update="undoUpdate"
     />
     <div v-else>
       <ArticleContent :article='article'/>
@@ -57,6 +58,9 @@ export default {
     updateArticle: function () {
       if (this.isUpdate) this.getArticle()
       this.isUpdate = !this.isUpdate
+    },
+    undoUpdate : function () {
+      this.isUpdate = false
     },
     deleteArticle: function () {
       axios({

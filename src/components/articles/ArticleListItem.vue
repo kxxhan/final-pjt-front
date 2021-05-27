@@ -1,14 +1,14 @@
 <template>
     <tr>
-      <th scope="row">{{ page.id }}</th>
+      <th scope="row">{{ article.id }}</th>
       <td>
-      <router-link class='a-in-tr' :to="{ path : `/board/${page.id}` }">{{ page.movie.title }}</router-link>
+      <router-link class='a-in-tr' :to="{ path : `movie/${article.movie.id}` }">{{ article.movie.title }}</router-link>
       </td>
       <td>
-        <router-link class='a-in-tr' :to="{ path : `/board/${page.id}` }">{{ page.title }}</router-link>
+        <router-link class='a-in-tr' :to="{ path : `/board/${article.id}` }">{{ article.title }}</router-link>
       </td>
-      <td>{{ page.user.username }}</td>
-      <td>{{ new Date(page.created_at).toLocaleString() }}</td>
+      <td>{{ article.user.username }}</td>
+      <td>{{ new Date(article.created_at).toLocaleString() }}</td>
     </tr>
 </template>
 <script>
@@ -19,13 +19,15 @@ export default {
     }
   },
   props: {
-    page: {
+    article: {
       type: Object,
       required: true
     }
   },
   methods: {
-
+  },
+  created : function () {
+    console.log(this.article);
   }
 }
 </script>

@@ -12,8 +12,8 @@
       </thead>
       <tbody>
         <ArticleListItem 
-        v-for="page in paginatedData" :key="page.id"
-        :page="page"
+        v-for="article in paginatedData" :key="article.id"
+        :article="article"
         />
       </tbody>
     </table>

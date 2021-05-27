@@ -1,12 +1,8 @@
 <template>
   <div v-if="show">
-    <!-- @mouseover="onMovie" @mouseout="offMovie" @mousemove="onMove" -->
-    <img @click="onClick" :src="'http://image.tmdb.org/t/p/w500/' + movie.poster_path" width='300px'>
-    <!-- <div class="star-wrapper">
-      <div class="star" v-show="isMouseOn">
-        마우스가 올라와 있어요
-      </div>
-    </div> -->
+    <div class="card bg-dark text-white" height='400px'>
+      <img @click="onClick" :src="'http://image.tmdb.org/t/p/w500/' + movie.poster_path" height='400px'>
+    </div>
   </div>
 
 </template>
@@ -30,20 +26,7 @@ export default {
     onClick : function () {
       this.$emit('picked', this.movie.id)
       this.show = false
-      // this.movieList.push()
     },
-    // onMovie : function () {
-    //   console.log("마우스온");
-    //   this.isMouseOn = true
-    // },
-    // offMovie : function () {
-    //   console.log("마우스오프");
-    //   this.isMouseOn = false
-    // },
-    // onMove : function () {
-    //   // console.log("마우스무브");
-    // },
-
   }
 }
 </script>
@@ -54,10 +37,11 @@ export default {
   }
   .star {
     position: relative;
-    /* overflow: hidden; */
     top: -50px;
     margin : auto 0;
     color: crimson;
-    /* margin-bottom : -45px; */
+  }
+  .card {
+    margin : 5px 10px;
   }
 </style>
