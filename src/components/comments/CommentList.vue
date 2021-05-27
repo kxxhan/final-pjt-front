@@ -54,6 +54,7 @@ export default {
         if (res.status === 200) {
           this.getComment()
         }
+        this.commentInput.content = ''
       }).catch( (err) => {
         console.log(err.response)
       })
