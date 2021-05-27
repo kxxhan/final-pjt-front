@@ -1,6 +1,6 @@
 <template>
     <!-- Footer -->
-  <footer class="text-center text-md-start bg-light text-muted" style="margin-top : 80px">
+  <footer class="text-center text-md-start bg-light text-muted footer" style="margin-top : 80px align-items:bottom">
     <!-- Section: Social media -->
     <section
       class="d-flex justify-content-center p-3"
@@ -50,5 +50,9 @@ export default {
 </script>
 
 <style scoped>
-
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
 </style>
