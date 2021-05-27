@@ -24,10 +24,8 @@
         </div>
       </div>
     </nav>
-    <div class="container-sm">
-      <router-view/>
-    </div>
-    <Footer/>
+    <router-view/>
+    <Footer/> 
   </div>
 </template>
 
@@ -125,7 +123,7 @@ body {
 
 .container-sm {
   /* margin-top: 50px; */
-  margin-top : 80px;
+  /* margin-top : 80px; */
 }
 /* 건 수정 부분 끝*/
 #nav a {

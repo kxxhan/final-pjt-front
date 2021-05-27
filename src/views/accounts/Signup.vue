@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div class="container-sm signup">
     <h1>Signup</h1>
     <form class="d-flex-row justify-content-center" id='signup' @submit.prevent='signup'>
     <div class="mb-3 row">
@@ -98,6 +98,9 @@ export default {
 </script>
 
 <style scoped>
+  .signup{
+    margin-top: 60px;
+  }
   span {
     color : crimson;
     font-size: 0.8rem;

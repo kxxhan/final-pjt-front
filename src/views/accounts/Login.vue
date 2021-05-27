@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div class="container-sm signin">
     <h1>Login</h1>
     <form class="d-flex-row justify-content-center" id='login' @submit.prevent='login'>
     <div class="mb-3 row">
@@ -47,6 +47,10 @@ export default {
 </script>
 
 <style scoped>
+  .signin {
+    margin-top: 60px;
+  }
+
   #login {
     margin : 50px auto;
     max-width: 500px;

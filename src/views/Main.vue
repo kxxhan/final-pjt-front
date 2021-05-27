@@ -1,5 +1,5 @@
 <template>
-  <div class="main container-fluid">
+  <div class="container-sm main">
     <section v-for='genreKey in recommendsKeys' :key='genreKey'>
       <h2>🎬 {{ genreKey }} 추천 영화</h2>
       <br>
@@ -74,8 +74,8 @@ export default {
 </script>
 
 <style scoped>
-/* .flex-row {
-  overflow: scroll;
-} */
+.main {
+  margin-top: 60px;
+}
 
 </style>
