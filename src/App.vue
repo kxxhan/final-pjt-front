@@ -1,21 +1,32 @@
 <template>
-  <div id="app" class='container-sm'>
-    <div id="nav">
-      <span v-if="isLogin">
-        <span v-if="isRecommended">
-          <router-link :to="{ name : 'Main' }">Main</router-link> |
-          <router-link :to="{ name : 'Article' }">Board</router-link> |
-        </span>
-        <router-link to="#" @click.native="logout">Logout</router-link> | 
-        <router-link to="#" v-if="isSuperUser" @click.native="goAdmin">Admin</router-link> 
-      </span>
-      <span v-else>
-        <router-link :to="{ name : 'Home' }">Home</router-link> |
-        <router-link :to="{ name : 'Login' }">Login</router-link> |
-        <router-link :to="{ name : 'Signup' }">Signup</router-link>
-      </span>
+  <div id="app">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">준영 앤 건의 프로젝트</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- id navbarNav => nav로 변경 -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <span class="navbar-nav" v-if="isLogin">
+            <span class="navbar-nav" v-if="isRecommended">
+              <router-link class="nav-item nav-link" id="r-link" :to="{ name : 'Main' }">Main</router-link>
+              <router-link class="nav-item nav-link" id="r-link" :to="{ name : 'Article' }">Board</router-link>
+            </span>
+            <router-link class="nav-item nav-link" id="r-link" to="#" @click.native="logout">Logout</router-link>
+            <router-link class="nav-item nav-link" id="r-link" to="#" v-if="isSuperUser" @click.native="goAdmin">Admin</router-link> 
+          </span>
+          <span class="navbar-nav" v-else>
+            <router-link class="nav-item nav-link" id="r-link" :to="{ name : 'Home' }">Home</router-link>
+            <router-link class="nav-item nav-link" id="r-link" :to="{ name : 'Login' }">Login</router-link>
+            <router-link class="nav-item nav-link" id="r-link" :to="{ name : 'Signup' }">Signup</router-link>
+          </span>
+        </div>
+      </div>
+    </nav>
+    <div class="container-sm">
+      <router-view/>
     </div>
-    <router-view/>
   </div>
 </template>
 
@@ -76,7 +87,34 @@ html, body, #app {
 #nav {
   padding: 30px;
 }
+/* 건 수정 부분 */
+#navbarNav .nav-item:hover{
+  transition: 0.25s;
+  /* color: #ea5249 ; */
+}
 
+#navbarNav .router-link-exact-active {
+  /* color: #ea5249; */
+}
+
+/* navbar 배경색 */
+.bg-light {
+  /* background-color: #1f1f1f!important; */
+}
+.navbar-brand {
+  color: #ea5249!important;
+}
+
+#r-link {
+  color: #ea5249;
+  font-size: 1.3rem;
+}
+
+.container-sm {
+  /* margin-top: 50px; */
+  margin : 100px auto;
+}
+/* 건 수정 부분 끝*/
 #nav a {
   font-weight: bold;
   color: #1f1f1f;
@@ -125,8 +163,5 @@ a {
   color: #ea5249 !important;
   border : 1px solid #ea5249;
 }
-
-
-
 </style>
     
