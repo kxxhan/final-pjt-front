@@ -2,7 +2,7 @@
   <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">준영 앤 건의 프로젝트</a>
+        <a class="navbar-brand" href="#">Moview</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -107,15 +107,14 @@ body {
 
 /* navbar 배경색 */
 .bg-light {
-  /* background-color: #1f1f1f!important; */
+  background-color: #1f1f1f!important;
 }
 .navbar-brand {
-  color: #ea5249!important;
+  color: #ffffff !important;
 }
 
 #r-link {
-  color: #ea5249;
-  font-size: 1.3rem;
+  color: #ffffff !important;
 }
 
 .container-sm {
