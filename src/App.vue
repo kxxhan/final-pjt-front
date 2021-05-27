@@ -27,13 +27,19 @@
     <div class="container-sm">
       <router-view/>
     </div>
+    <Footer/>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Footer from '@/components/Footer.vue'
+
 export default {
   name: 'App',
+  components: {
+    Footer
+  },
   methods: {
     logout: async function () {
       this.$store.dispatch('logout')
